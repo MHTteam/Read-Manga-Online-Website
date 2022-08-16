@@ -18,3 +18,4 @@ A website for reading free manga that we take from another website
 - user can sign up by: user name + password. (may be gmail, facebook if we can do this)
 - user can sign in by: username + password, gmail, facbebook 
 - forgot password/reset password function (using PHP)
+3. Database
