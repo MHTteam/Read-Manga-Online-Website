@@ -1,0 +1,43 @@
+@options
+@packages
+@argfile
+-classpath
+'C:/Users/tri/.m2/repository/javax/javaee-web-api/7.0/javaee-web-api-7.0.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'C:/Users/tri/Desktop/Read-Manga-Online-Website/AnimeHub.com/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/tri/Desktop/Read-Manga-Online-Website/AnimeHub.com/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'AnimeHub 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/7/docs/api' 'C:/Users/tri/Desktop/Read-Manga-Online-Website/AnimeHub.com/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'AnimeHub 1.0-SNAPSHOT API'
+com.animehub.controller
+'C:/Users/tri/Desktop/Read-Manga-Online-Website/AnimeHub.com/src/main/java/com/animehub/controller/HomeController.java'
+C:\Users\tri\.m2\repository\javax\javaee-web-api\7.0\javaee-web-api-7.0.jar = 1652920801341
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\src\main\java = 1660899297324
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\allclasses-frame.html = 1660900296419
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\allclasses-noframe.html = 1660900296421
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\constant-values.html = 1660900296286
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\deprecated-list.html = 1660900296415
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\help-doc.html = 1660900296428
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\index-all.html = 1660900296407
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\index.html = 1660900296423
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\overview-tree.html = 1660900296393
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\package-list = 1660900296214
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\script.js = 1660900296464
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\serialized-form.html = 1660900296337
+C:\Users\tri\Desktop\Read-Manga-Online-Website\AnimeHub.com\target\site\apidocs\stylesheet.css = 1660900296449
