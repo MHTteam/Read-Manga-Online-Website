@@ -30,7 +30,7 @@ CREATE TABLE Users(
 	avatarURL VARCHAR NULL,
 	nickName NVARCHAR(50) UNIQUE NOT NULL,
 --	User's gender values: 1 == Male; 0 == Female; NULL == Others
-	gender BIT NULL,
+	gender VARCHAR(10) NOT NULL,
 --	User's account status values: 0 == Active (Not banned); 1 == inActive (Banned)
 	[status] BIT NOT NULL,
 	signupDate DATE NOT NULL,
@@ -44,13 +44,13 @@ CREATE TABLE Users(
 
 GO
 INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
-	VALUES ('testUser', '111111', 'testUser@gmail.com', NULL, N'Tui là User đó', 1, 0, GETDATE(), 2)
+	VALUES ('testUser', '111111', 'testUser@gmail.com', NULL, N'Tui là User đó', 'Male', 0, GETDATE(), 2)
 INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
-	VALUES ('testAdmin', '111111', 'testAdmin@gmail.com', NULL, N'Tui là Admin đó', 1, 0, GETDATE(), 1)
+	VALUES ('testAdmin', '111111', 'testAdmin@gmail.com', NULL, N'Tui là Admin đó', 'Female', 0, GETDATE(), 1)
 INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
-	VALUES ('testTranslator', '111111', 'testTranslator@gmail.com', NULL, N'Tui là Translator đó', 1, 0, GETDATE(), 3)
+	VALUES ('testTranslator', '111111', 'testTranslator@gmail.com', NULL, N'Tui là Translator đó', 'Others', 0, GETDATE(), 3)
 INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
-	VALUES ('testUser1', '111111', 'testUser1@gmail.com', NULL, N'Tui là User đó ahihi', NULL, 0, GETDATE(), 2)
+	VALUES ('testUser1', '111111', 'testUser1@gmail.com', NULL, N'Tui là User đó ahihi', 'Others', 0, GETDATE(), 2)
 
 GO
 CREATE TABLE Groups(

@@ -35,7 +35,7 @@ public class UserDAO {
                 user.setEmail(rs.getString("email"));
                 user.setAvatarURL(rs.getString("avatarURL"));
                 user.setNickName(rs.getString("nickName"));
-                user.setGender(rs.getBoolean("gender"));
+                user.setGender(rs.getString("gender"));
                 user.setStatus(rs.getBoolean("status"));
                 user.setSignupDate(rs.getDate("signupDate"));
                 user.setRoleName(rs.getString("roleName"));
@@ -51,7 +51,7 @@ public class UserDAO {
     
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        UserDTO user = dao.login("testUser1", "111111");
+        UserDTO user = dao.login("testUser", "111111");
         System.out.println(user.getUserName());
         System.out.println(user.getPassword());
         System.out.println(user.getAvatarURL());

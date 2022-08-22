@@ -18,7 +18,7 @@ public class UserDTO implements Serializable{
     private String email;
     private String avatarURL;
     private String nickName;
-    private Boolean gender;
+    private String gender;
     private Boolean status;
     private Date signupDate;
     private String roleName;
@@ -26,7 +26,7 @@ public class UserDTO implements Serializable{
     public UserDTO() {
     }
 
-    public UserDTO(String userName, String password, String email, String avatarURL, String nickName, Boolean gender, Boolean status, Date signupDate, String roleName) {
+    public UserDTO(String userName, String password, String email, String avatarURL, String nickName, String gender, Boolean status, Date signupDate, String roleName) {
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -78,11 +78,11 @@ public class UserDTO implements Serializable{
         this.nickName = nickName;
     }
 
-    public Boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
