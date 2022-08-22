@@ -1,0 +1,6 @@
+utils\DBUtil.class
+com\animehub\controller\HomeController.class
+com\mangahub\controller\LoginController.class
+com\mangahub\controller\MangaController.class
+com\mangahub\controller\UserController.class
+com\mangahub\User\UserDTO.class
