@@ -16,6 +16,10 @@
         <servlet-name>MangaController</servlet-name>
         <servlet-class>com.mangahub.controller.MangaController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CommentController</servlet-name>
+        <servlet-class>com.mangahub.controller.CommentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>MangaController</servlet-name>
         <url-pattern>/manga</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentController</servlet-name>
+        <url-pattern>/comment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
