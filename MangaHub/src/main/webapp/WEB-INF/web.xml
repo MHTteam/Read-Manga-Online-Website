@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>HomeController</servlet-name>
-        <servlet-class>com.animehub.controller.HomeController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>UserController</servlet-name>
         <servlet-class>com.mangahub.controller.UserController</servlet-class>
     </servlet>
@@ -20,10 +16,10 @@
         <servlet-name>CommentController</servlet-name>
         <servlet-class>com.mangahub.controller.CommentController</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
         <servlet-name>HomeController</servlet-name>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
+        <servlet-class>com.mangahub.controller.HomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/user</url-pattern>
@@ -39,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/comment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
