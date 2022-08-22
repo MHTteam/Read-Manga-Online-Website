@@ -1,4 +1,4 @@
-USE [master]
+﻿USE [master]
 
 GO
 DROP DATABASE IF EXISTS MANGAHUB
@@ -16,6 +16,11 @@ CREATE TABLE UserRoles(
 
 	CONSTRAINT PK_UserRoles PRIMARY KEY (roleID)
 )
+
+GO
+INSERT INTO UserRoles(roleName) VALUES('Admin')
+INSERT INTO UserRoles(roleName) VALUES('User')
+INSERT INTO UserRoles(roleName) VALUES('Translator')
 
 GO
 CREATE TABLE Users(
@@ -36,6 +41,16 @@ CREATE TABLE Users(
 		REFERENCES UserRoles(roleID),
 	CONSTRAINT Email_Check CHECK(email LIKE '%___@___%')
 )
+
+GO
+INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
+	VALUES ('testUser', '111111', 'testUser@gmail.com', NULL, N'Tui là User đó', 1, 0, GETDATE(), 2)
+INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
+	VALUES ('testAdmin', '111111', 'testAdmin@gmail.com', NULL, N'Tui là Admin đó', 1, 0, GETDATE(), 1)
+INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
+	VALUES ('testTranslator', '111111', 'testTranslator@gmail.com', NULL, N'Tui là Translator đó', 1, 0, GETDATE(), 3)
+INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
+	VALUES ('testUser1', '111111', 'testUser1@gmail.com', NULL, N'Tui là User đó ahihi', NULL, 0, GETDATE(), 2)
 
 GO
 CREATE TABLE Groups(
