@@ -1,6 +1,15 @@
 C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\controller\MangaController.java
+C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\Comment\CommentDTO.java
 C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\controller\LoginController.java
 C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\controller\UserController.java
 C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\User\UserDTO.java
+C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\controller\CommentController.java
 C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\utils\DBUtil.java
 C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\controller\HomeController.java
+C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\Manga\MangaDTO.java
+C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\Author\AuthorDTO.java
+C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\Chapter\ChapterDTO.java
+C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\Image\ImageDTO.java
+C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\Category\CategoryDTO.java
+C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\User\UserDAO.java
+C:\Users\MSI GF63\Desktop\Read-Manga-Online-Website\MangaHub\src\main\java\com\mangahub\Group\GroupDTO.java
