@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import jdk.nashorn.internal.runtime.UserAccessorProperty;
 import utils.DBUtil;
 
 /**
@@ -16,15 +17,15 @@ import utils.DBUtil;
  * @author MSI GF63
  */
 public class UserDAO {
-    public UserDTO login(String userName, String password){
+    public UserDTO login(String email, String password){
         String sql = "SELECT userName, [password], email, avatarURL, nickName, gender, [status], signupDate, roleName FROM Users"
                 + " INNER JOIN UserRoles"
                 + " ON Users.[role] = UserRoles.roleID"
-                + " WHERE userName = ? AND [password] = ?";
+                + " WHERE email = ? AND [password] = ?";
         try {
             Connection cn = DBUtil.getConnection();
             PreparedStatement pst = cn.prepareStatement(sql);
-            pst.setString(1, userName);
+            pst.setString(1, email);
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             
@@ -47,6 +48,7 @@ public class UserDAO {
         }
         return null;
     }
+           
     
     
     public static void main(String[] args) {
