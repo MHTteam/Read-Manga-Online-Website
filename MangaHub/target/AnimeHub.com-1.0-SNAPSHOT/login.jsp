@@ -64,13 +64,13 @@
                     <div class="col-lg-6">
                         <div class="login__form">
                             <h3>Đăng nhập</h3>
-                            <form action="./login">
+                            <form action="./login" method="POST">
                                 <div class="input__item">
                                     <input type="text" placeholder="Tên đăng nhập" name="username">
                                     <span class="icon_mail"></span>
                                 </div>
                                 <div class="input__item">
-                                    <input type="text" placeholder="Mật khẩu" name="password">
+                                    <input type="password" placeholder="Mật khẩu" name="password">
                                     <span class="icon_lock"></span>
                                 </div>
                                 <div style="color:red; font-weight:bold;">${errorMessage}</div>

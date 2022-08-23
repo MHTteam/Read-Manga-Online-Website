@@ -34,7 +34,7 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userName = request.getParameter("userName");
+        String userName = request.getParameter("username");
         String password = request.getParameter("password");
 
         UserDAO userDAO = new UserDAO();
