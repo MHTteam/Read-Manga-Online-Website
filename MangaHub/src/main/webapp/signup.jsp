@@ -160,21 +160,29 @@
                                         if (email.value === "") {
                                             document.getElementById("checkEmail").style.display = "block";
                                             isValid = "false";
+                                        } else {
+                                            document.getElementById("checkEmail").style.display = "none";
                                         }
 
                                         if (userName.value === "") {
                                             document.getElementById("checkUserName").style.display = "block";
                                             isValid = "false";
+                                        } else {
+                                            document.getElementById("checkUserName").style.display = "none";
                                         }
 
                                         if (password.value === "") {
                                             document.getElementById("checkPass").style.display = "block";
                                             isValid = "false";
+                                        } else {
+                                            document.getElementById("checkPass").style.display = "none";
                                         }
 
                                         if (password.value !== re_password.value) {
                                             document.getElementById("checkRePass").style.display = "block";
                                             isValid = "false";
+                                        } else {
+                                            document.getElementById("checkRePass").style.display = "none";
                                         }
 
                                         if (isValid === "true") {
