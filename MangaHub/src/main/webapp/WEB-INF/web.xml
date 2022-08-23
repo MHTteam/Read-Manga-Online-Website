@@ -20,6 +20,10 @@
         <servlet-name>HomeController</servlet-name>
         <servlet-class>com.mangahub.controller.HomeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignupController</servlet-name>
+        <servlet-class>com.mangahub.controller.SignupController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/user</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignupController</servlet-name>
+        <url-pattern>/signup</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

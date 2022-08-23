@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="normal__breadcrumb__text">
-                            <h2>Login</h2>
+                            <h2>Đăng nhập</h2>
                             <p>Welcome to the official Anime blog.</p>
                         </div>
                     </div>
@@ -63,27 +63,27 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="login__form">
-                            <h3>Login</h3>
+                            <h3>Đăng nhập</h3>
                             <form action="./login">
                                 <div class="input__item">
-                                    <input type="text" placeholder="Email address" name="email">
+                                    <input type="text" placeholder="Tên đăng nhập" name="username">
                                     <span class="icon_mail"></span>
                                 </div>
                                 <div class="input__item">
-                                    <input type="text" placeholder="Password" name="password">
+                                    <input type="text" placeholder="Mật khẩu" name="password">
                                     <span class="icon_lock"></span>
                                 </div>
                                 <div style="color:red; font-weight:bold;">${errorMessage}</div>
-                                <button type="submit" class="site-btn">Login Now</button>
+                                <button type="submit" class="site-btn">Đăng nhập</button>
                             </form>
-                            <a href="#" class="forget_pass">Forgot Your Password?</a>
+                            <a href="#" class="forget_pass">Quên mật khẩu?</a>
                         </div>
 
                     </div>
                     <div class="col-lg-6">
                         <div class="login__register">
-                            <h3>Dont’t Have An Account?</h3>
-                            <a href="signup.jsp" class="primary-btn">Register Now</a>
+                            <h3>Chưa có tài khoản?</h3>
+                            <a href="signup.jsp" class="primary-btn">Đăng kí tài khoản</a>
                         </div>
                     </div>
                 </div>
