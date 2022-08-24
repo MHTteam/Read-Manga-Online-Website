@@ -4,123 +4,160 @@
     Author     : tri
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="com.mangahub.Category.CategoryDTO"%>
+<%@page import="com.mangahub.Chapter.ChapterDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.mangahub.Author.AuthorDTO"%>
+<%@page import="com.mangahub.Manga.MangaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="vi">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Anime Template">
-    <meta name="keywords" content="Anime, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Anime Template">
+        <meta name="keywords" content="Anime, unica, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Anime | Template</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>
+        <!-- Css Styles -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/plyr.css" type="text/css">
+        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+    </head>
 
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+    <body>
+        <!-- Page Preloder -->
+        <div id="preloder">
+            <div class="loader"></div>
+        </div>
 
-    <!-- Header Section Begin -->
-    <jsp:include page="header.jsp" />
-    <!-- Header End -->
+        <!-- Header Section Begin -->
+        <jsp:include page="header.jsp" />
+        <!-- Header End -->
 
-    <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
-                        <span>Romance</span>
+        <!-- Declare attributes from servlet -->
+        <%!
+            MangaDTO manga;
+            AuthorDTO author;
+            ArrayList<ChapterDTO> chapterList;
+            ArrayList<CategoryDTO> mangaCategories;
+        %>
+
+        <!-- Catch request attributes -->
+        <%
+            manga = (MangaDTO) request.getAttribute("manga");
+            author = (AuthorDTO) request.getAttribute("author");
+            chapterList = (ArrayList<ChapterDTO>) request.getAttribute("chapterList");
+            mangaCategories = (ArrayList<CategoryDTO>) request.getAttribute("mangaCategories");
+        %>
+
+        <!-- Breadcrumb Begin -->
+        <div class="breadcrumb-option">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb__links">
+                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                            <a href="./categories.html">Categories</a>
+                            <span>Romance</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Breadcrumb End -->
+        <!-- Breadcrumb End -->
 
-    <!-- Anime Section Begin -->
-    <section class="anime-details spad">
-        <div class="container">
-            <div class="anime__details__content">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" data-setbg="img/anime/details-pic.jpg">
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+        <!-- Anime Section Begin -->
+        <section class="anime-details spad">
+            <div class="container">
+                <!-- Manga detail section -->
+                <c:if test="${not empty requestScope.manga}">
+                    <div class="anime__details__content">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="anime__details__pic set-bg" data-setbg="${requestScope.manga.coverImageURL}">
+                                    <div class="comment"><i class="fa fa-comments"></i> 0</div>
+                                    <div class="view"><i class="fa fa-eye"></i> ${requestScope.manga.view}</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="anime__details__text">
+                                    <div class="anime__details__title">
+                                        <h3>${requestScope.manga.mangaName}</h3>
+                                        <span>${requestScope.author.authorName}</span>
+                                    </div>
+                                    <div class="anime__details__rating">
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star-half-o"></i></a>
+                                        </div>
+                                        <span>${requestScope.manga.likeNumber}</span>
+                                    </div>
+                                    <p>${requestScope.manga.description}</p>
+                                    <div class="anime__details__widget">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <ul>
+                                                    <li><span>Uploader:</span> ${requestScope.manga.uploader}</li>
+                                                    <li><span>Publish Date:</span> ${requestScope.manga.publishDate}</li>
+                                                    <li><span>Update Date:</span> ${requestScope.manga.updateDate}</li>
+                                                    <li><span>Status:</span> ${requestScope.manga.status}</li>
+                                                    <li>
+                                                        <span>Genre:</span> 
+                                                        <c:forEach var="cate" items="${requestScope.mangaCategories}" varStatus="loop">
+                                                            <span>${cate.cateName}</span>
+                                                        </c:forEach>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <ul>
+                                                    <li><span>Likes:</span> ${requestScope.manga.likeNumber}</li>
+                                                    <li><span>Rating:</span> ${requestScope.manga.rating}</li>
+                                                    <li>
+                                                        <span>Group:</span> 
+                                                        <c:if test="${not empty requestScope.manga.group}">
+                                                            <span>${requestScope.manga.group}</span>
+                                                        </c:if>
+                                                        <c:if test="${empty requestScope.manga.group}">
+                                                            <span>Updating</span>
+                                                        </c:if>
+                                                    </li>
+                                                    <li><span>Views:</span> ${requestScope.manga.view}</li>
+                                                    <li><span>Quality:</span> HD</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="anime__details__btn">
+                                        <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Favorite</a>
+                                        <a href="#" class="watch-btn"><span>Read</span> <i
+                                                class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-9">
-                        <div class="anime__details__text">
-                            <div class="anime__details__title">
-                                <h3>Fate Stay Night: Unlimited Blade</h3>
-                                <span>???????????, Feito?sutei naito</span>
-                            </div>
-                            <div class="anime__details__rating">
-                                <div class="rating">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
-                                </div>
-                                <span>1.029 Votes</span>
-                            </div>
-                            <p>Every human inhabiting the world of Alcia is branded by a ?Count? or a number written on
-                                their body. For Hina?s mother, her total drops to 0 and she?s pulled into the Abyss,
-                                never to be seen again. But her mother?s last words send Hina on a quest to find a
-                            legendary hero from the Waste War - the fabled Ace!</p>
-                            <div class="anime__details__widget">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <ul>
-                                            <li><span>Type:</span> TV Series</li>
-                                            <li><span>Studios:</span> Lerche</li>
-                                            <li><span>Date aired:</span> Oct 02, 2019 to ?</li>
-                                            <li><span>Status:</span> Airing</li>
-                                            <li><span>Genre:</span> Action, Adventure, Fantasy, Magic</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <ul>
-                                            <li><span>Scores:</span> 7.31 / 1,515</li>
-                                            <li><span>Rating:</span> 8.5 / 161 times</li>
-                                            <li><span>Duration:</span> 24 min/ep</li>
-                                            <li><span>Quality:</span> HD</li>
-                                            <li><span>Views:</span> 131,541</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                <a href="#" class="watch-btn"><span>Watch Now</span> <i
-                                    class="fa fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </c:if>
+
                 <div class="row">
+                    <!-- Manga comment section -->
                     <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">
                             <div class="section-title">
@@ -133,7 +170,7 @@
                                 <div class="anime__review__item__text">
                                     <h6>Chris Curry - <span>1 Hour ago</span></h6>
                                     <p>whachikan Just noticed that someone categorized this as belonging to the genre
-                                    "demons" LOL</p>
+                                        "demons" LOL</p>
                                 </div>
                             </div>
                             <div class="anime__review__item">
@@ -161,7 +198,7 @@
                                 <div class="anime__review__item__text">
                                     <h6>Chris Curry - <span>1 Hour ago</span></h6>
                                     <p>whachikan Just noticed that someone categorized this as belonging to the genre
-                                    "demons" LOL</p>
+                                        "demons" LOL</p>
                                 </div>
                             </div>
                             <div class="anime__review__item">
@@ -193,6 +230,7 @@
                             </form>
                         </div>
                     </div>
+                    <!-- Manga recommendation section -->
                     <div class="col-lg-4 col-md-4">
                         <div class="anime__details__sidebar">
                             <div class="section-title">
@@ -227,10 +265,10 @@
 
         <!-- Footer Section Begin -->
         <jsp:include page="footer.jsp" />
-          <!-- Footer Section End -->
+        <!-- Footer Section End -->
 
-          <!-- Search model Begin -->
-          <div class="search-model">
+        <!-- Search model Begin -->
+        <div class="search-model">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-switch"><i class="icon_close"></i></div>
                 <form class="search-model-form">
@@ -252,4 +290,4 @@
 
     </body>
 
-    </html>
+</html>

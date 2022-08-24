@@ -1,10 +1,10 @@
-
 package com.mangahub.Chapter;
 
 import java.io.Serializable;
 import java.sql.Date;
 
-public class ChapterDTO implements Serializable{
+public class ChapterDTO implements Serializable, Comparable<ChapterDTO> {
+
     private int chapterID;
     private int chapterNumber;
     private String chapterName;
@@ -61,6 +61,18 @@ public class ChapterDTO implements Serializable{
     public void setMangaID(int mangaID) {
         this.mangaID = mangaID;
     }
-    
-    
+
+    // CompareTo method to sort the list of object
+    // by chapterNumber
+    @Override
+    public int compareTo(ChapterDTO chapter) {
+        if (chapterNumber == chapter.getChapterNumber()) {
+            return 0;
+        } else if (chapterNumber > chapter.getChapterNumber()) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
 }

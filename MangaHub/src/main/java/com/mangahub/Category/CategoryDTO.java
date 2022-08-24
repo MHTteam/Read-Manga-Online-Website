@@ -3,7 +3,7 @@ package com.mangahub.Category;
 
 import java.io.Serializable;
 
-public class CategoryDTO implements Serializable{
+public class CategoryDTO implements Serializable, Comparable<CategoryDTO>{
     private int cateID;
     private String cateName;
 
@@ -29,6 +29,13 @@ public class CategoryDTO implements Serializable{
 
     public void setCateName(String cateName) {
         this.cateName = cateName;
+    }
+    
+    // CompareTo method to sort the list of object
+    // by cateName
+    @Override
+    public int compareTo(CategoryDTO cate) {
+        return this.cateName.compareTo(cate.getCateName());
     }
     
     

@@ -4,9 +4,14 @@
     Author     : tri
 --%>
 
+<%@page import="com.mangahub.Category.CategoryDTO"%>
+<%@page import="com.mangahub.Chapter.ChapterDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.mangahub.Author.AuthorDTO"%>
+<%@page import="com.mangahub.Manga.MangaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -41,6 +46,22 @@
     <!-- Header Section Begin -->
     <jsp:include page="header.jsp" />
     <!-- Header End -->
+    
+    <!-- Declare attributes from servlet -->
+    <%!
+        MangaDTO manga;
+        AuthorDTO author;
+        ArrayList<ChapterDTO> chapterList;
+        ArrayList<CategoryDTO> mangaCategories;
+    %>
+    
+    <!-- Catch request attributes -->
+    <%
+        manga = (MangaDTO)request.getAttribute("manga");
+        author = (AuthorDTO)request.getAttribute("author");
+        chapterList = (ArrayList<ChapterDTO>)request.getAttribute("chapterList");
+        mangaCategories = (ArrayList<CategoryDTO>)request.getAttribute("mangaCategories");
+    %>
 
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
@@ -61,6 +82,7 @@
     <!-- Anime Section Begin -->
     <section class="anime-details spad">
         <div class="container">
+            <!-- Manga detail section -->
             <div class="anime__details__content">
                 <div class="row">
                     <div class="col-lg-3">
@@ -121,6 +143,7 @@
                     </div>
                 </div>
                 <div class="row">
+                    <!-- Manga comment section -->
                     <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">
                             <div class="section-title">
@@ -193,6 +216,7 @@
                             </form>
                         </div>
                     </div>
+                    <!-- Manga recommendation section -->
                     <div class="col-lg-4 col-md-4">
                         <div class="anime__details__sidebar">
                             <div class="section-title">

@@ -1,8 +1,18 @@
-
 package com.mangahub.controller;
 
+import com.mangahub.Author.AuthorDAO;
+import com.mangahub.Author.AuthorDTO;
+import com.mangahub.Category.CategoryDAO;
+import com.mangahub.Category.CategoryDTO;
+import com.mangahub.Chapter.ChapterDAO;
+import com.mangahub.Chapter.ChapterDTO;
+import com.mangahub.Manga.MangaDAO;
+import com.mangahub.Manga.MangaDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Locale;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,16 +37,32 @@ public class MangaController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MangaController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MangaController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+            MangaDAO mangaDAO = new MangaDAO();
+            AuthorDAO authorDAO = new AuthorDAO();
+            ChapterDAO chapterDAO = new ChapterDAO();
+            CategoryDAO cateDAO = new CategoryDAO();
+
+            String action = request.getParameter("action");
+            String url = "";
+            switch (action) {
+                case "detail":
+                    url = "manga-details.jsp";
+                    int mangaID = Integer.parseInt(request.getParameter("mangaID"));
+                    
+                    MangaDTO manga = mangaDAO.loadManga(mangaID);
+                    AuthorDTO author = authorDAO.loadAuthor(manga.getAuthor());
+                    ArrayList<ChapterDTO> chapterList = chapterDAO.loadChapters(mangaID);
+                    ArrayList<CategoryDTO> mangaCategories = cateDAO.loadMangaCategories(mangaID);
+                    
+                    request.setAttribute("manga", manga);
+                    request.setAttribute("author", author);
+                    request.setAttribute("chapterList", chapterList);
+                    request.setAttribute("mangaCategories", mangaCategories);
+                    break;
+            }
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
