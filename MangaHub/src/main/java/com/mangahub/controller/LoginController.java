@@ -7,9 +7,7 @@ package com.mangahub.controller;
 
 import com.mangahub.User.UserDAO;
 import com.mangahub.User.UserDTO;
-import com.sun.prism.Texture;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
