@@ -277,7 +277,13 @@ INSERT INTO Categories(cateName) VALUES (N'Sports')
 INSERT INTO Categories(cateName) VALUES (N'Superhero')
 INSERT INTO Categories(cateName) VALUES (N'Thriller')
 INSERT INTO Categories(cateName) VALUES (N'Tragedy')
-
+INSERT INTO Categories(cateName) VALUES (N'Manga')
+INSERT INTO Categories(cateName) VALUES (N'Manhwa')
+INSERT INTO Categories(cateName) VALUES (N'Manhua')
+INSERT INTO Categories(cateName) VALUES (N'Shonen')
+INSERT INTO Categories(cateName) VALUES (N'Shojo')
+INSERT INTO Categories(cateName) VALUES (N'Seinen')
+INSERT INTO Categories(cateName) VALUES (N'Josei')
 
 GO
 CREATE TABLE Mangas_Categories(
@@ -297,6 +303,8 @@ INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 12)
 INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 14)
 INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 5)
 INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 21)
+INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 22)
+INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 27)
 
 
 GO
