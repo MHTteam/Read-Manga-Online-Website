@@ -42,6 +42,10 @@ CREATE TABLE Users(
 	CONSTRAINT Email_Check CHECK(email LIKE '%___@___%')
 )
 
+
+SELECT * FROM Users
+WHERE userName = "testUser";
+
 GO
 INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
 	VALUES ('testUser', '111111', 'testUser@gmail.com', NULL, N'Tui là User đó', 'Male', 0, GETDATE(), 2)
@@ -371,3 +375,4 @@ CREATE TABLE UserFavorites(
 	CONSTRAINT FK_Mangas_UserFavorites FOREIGN KEY (mangaID)
 		REFERENCES Mangas(mangaID)
 )
+
