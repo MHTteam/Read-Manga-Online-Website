@@ -1,10 +1,10 @@
-
 package com.mangahub.Manga;
 
 import java.io.Serializable;
 import java.sql.Date;
 
-public class MangaDTO implements Serializable{
+public class MangaDTO implements Serializable {
+
     private int mangaID;
     private String mangaName;
     private String coverImageURL;
@@ -14,15 +14,15 @@ public class MangaDTO implements Serializable{
     private int likeNumber;
     private double rating;
     private int view;
-    private int status;
-    private Boolean author;
+    private String status;
+    private int author;
     private String uploader;
     private String group;
 
     public MangaDTO() {
     }
 
-    public MangaDTO(int mangaID, String mangaName, String coverImageURL, String description, Date publishDate, Date updateDate, int likeNumber, double rating, int view, int status, Boolean author, String uploader, String group) {
+    public MangaDTO(int mangaID, String mangaName, String coverImageURL, String description, Date publishDate, Date updateDate, int likeNumber, double rating, int view, String status, int author, String uploader, String group) {
         this.mangaID = mangaID;
         this.mangaName = mangaName;
         this.coverImageURL = coverImageURL;
@@ -110,19 +110,19 @@ public class MangaDTO implements Serializable{
         this.view = view;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Boolean getAuthor() {
+    public int getAuthor() {
         return author;
     }
 
-    public void setAuthor(Boolean author) {
+    public void setAuthor(int author) {
         this.author = author;
     }
 
@@ -143,4 +143,5 @@ public class MangaDTO implements Serializable{
     }
     
     
+
 }
