@@ -109,6 +109,10 @@ public class UserDTO implements Serializable{
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
-    
+
+    @Override
+    public String toString() {
+        return "UserDTO{" + "userName=" + userName + ", email=" + email + ", avatarURL=" + avatarURL + ", nickName=" + nickName + ", gender=" + gender + ", status=" + status + ", signupDate=" + signupDate + ", roleName=" + roleName + '}';
+    }  
     
 }
