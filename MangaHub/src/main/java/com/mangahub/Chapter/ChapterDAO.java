@@ -36,7 +36,7 @@ public class ChapterDAO {
                 
                 chapterList.add(chapter);
             }
-            Collections.sort(chapterList);
+            Collections.sort(chapterList, Collections.reverseOrder());
             return chapterList;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

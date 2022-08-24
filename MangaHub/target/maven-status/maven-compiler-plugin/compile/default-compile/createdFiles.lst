@@ -4,9 +4,12 @@ com\mangahub\Group\GroupDTO.class
 com\mangahub\Chapter\ChapterDTO.class
 com\mangahub\Comment\CommentDTO.class
 com\mangahub\controller\SignupController.class
+com\mangahub\Category\CategoryDAO.class
+com\mangahub\Manga\MangaDAO.class
 com\mangahub\controller\CommentController.class
 com\mangahub\Category\CategoryDTO.class
 com\mangahub\Manga\MangaDTO.class
+com\mangahub\Chapter\ChapterDAO.class
 com\mangahub\controller\ImageController.class
 com\mangahub\controller\LoginController.class
 com\mangahub\controller\UserController.class

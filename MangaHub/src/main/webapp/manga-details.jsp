@@ -107,7 +107,7 @@
                                             <a href="#"><i class="fa fa-star"></i></a>
                                             <a href="#"><i class="fa fa-star-half-o"></i></a>
                                         </div>
-                                        <span>${requestScope.manga.likeNumber}</span>
+                                        <span>${requestScope.manga.rating}</span>
                                     </div>
                                     <p>${requestScope.manga.description}</p>
                                     <div class="anime__details__widget">
@@ -147,18 +147,50 @@
                                     </div>
                                     <div class="anime__details__btn">
                                         <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Favorite</a>
-                                        <a href="#" class="watch-btn"><span>Read</span> <i
-                                                class="fa fa-angle-right"></i></a>
+                                        <a href="#" class="follow-btn">Read First</a>
+                                        <a href="#" class="follow-btn">Read Last</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </c:if>
-
+                <!-- Manga chapters list section -->
+                <c:if test="${not empty requestScope.chapterList}">
+                    <div class="section-title">
+                        <h5>Chapters List</h5>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <th>Chapter Name</th>
+                                <th>Update Date</th>
+                            </tr>
+                            <c:forEach var="chapter" items="${requestScope.chapterList}" varStatus="loop">
+                                <tr>
+                                    <td><a href="#">${chapter.chapterName}</a></td>
+                                    <td>${chapter.updateDate}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </c:if>
+                <!-- Temporary line break, please edit using CSS -->
+                <br>
                 <div class="row">
                     <!-- Manga comment section -->
                     <div class="col-lg-8 col-md-8">
+                        <div class="anime__details__form">
+                            <div class="section-title">
+                                <h5>Your Comment</h5>
+                            </div>
+                            <form action="#">
+                                <textarea placeholder="Your Comment"></textarea>
+                                <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                            </form>
+                        </div>
+                        <!-- Temporary line break, please edit using CSS -->
+                        <br>
                         <div class="anime__details__review">
                             <div class="section-title">
                                 <h5>Reviews</h5>
@@ -219,15 +251,6 @@
                                     <p>Where is the episode 15 ? Slow update! Tch</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="anime__details__form">
-                            <div class="section-title">
-                                <h5>Your Comment</h5>
-                            </div>
-                            <form action="#">
-                                <textarea placeholder="Your Comment"></textarea>
-                                <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
-                            </form>
                         </div>
                     </div>
                     <!-- Manga recommendation section -->
