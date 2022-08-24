@@ -67,11 +67,11 @@
                             <form action="./login" method="POST">
                                 <div class="input__item">
                                     <input type="text" placeholder="Tên đăng nhập" name="username">
-                                    <span class="icon_mail"></span>
+                                    <span class="icon icon_mail"></span>
                                 </div>
                                 <div class="input__item">
                                     <input type="password" placeholder="Mật khẩu" name="password">
-                                    <span class="icon_lock"></span>
+                                    <span class="icon icon_lock"></span>
                                 </div>
                                 <div style="color:red; font-weight:bold;">${errorMessage}</div>
                                 <button type="submit" class="site-btn">Đăng nhập</button>
@@ -114,7 +114,7 @@
         <!-- Search model Begin -->
         <div class="search-model">
             <div class="h-100 d-flex align-items-center justify-content-center">
-                <div class="search-close-switch"><i class="icon_close"></i></div>
+                <div class="search-close-switch"><i class="icon icon_close"></i></div>
                 <form class="search-model-form">
                     <input type="text" id="search-input" placeholder="Search here.....">
                 </form>
