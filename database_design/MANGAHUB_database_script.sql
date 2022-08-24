@@ -42,10 +42,6 @@ CREATE TABLE Users(
 	CONSTRAINT Email_Check CHECK(email LIKE '%___@___%')
 )
 
-
-SELECT * FROM Users
-WHERE userName = "testUser";
-
 GO
 INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role])
 	VALUES ('testUser', '111111', 'testUser@gmail.com', NULL, N'Tui là User đó', 'Male', 0, GETDATE(), 2)
@@ -91,6 +87,7 @@ CREATE TABLE Authors(
 
 GO
 INSERT INTO Authors(authorName) VALUES (N'Ishida Sui')
+INSERT INTO Authors(authorName) VALUES (N'Ooima Yoshitoki')
 
 GO
 CREATE TABLE Mangas(
@@ -120,8 +117,9 @@ CREATE TABLE Mangas(
 
 GO
 INSERT INTO Mangas(mangaName, coverImageURL, [description], publishDate, updateDate, likeNumber, rating, [view], [status], author, uploader, [group])
-VALUES (N'Tokyo Ghoul', 'img/manga/Tokyo-Ghoul/tokyo-ghoul-cover-1.jpeg', N'Hàng loạt những vụ giết người kỳ lạ đang xảy ra ở Tokyo, và nhờ chất lỏng bằng chứng tại hiện trường, cảnh sát kết luận thủ phạm chính là "ghoul" - quỷ ăn thịt người. Kaneki, một sinh viên đại học thích đọc sách bị một con ghoul tấn công, và từ đó, số phận của chàng trai bắt đầu thay đổi...', '2011-9-1', GETDATE(), 0, 0, 0, 'Updating', 1, 'testTranslator', NULL)
-
+VALUES (N'Tokyo Ghoul', 'img/manga/Tokyo-Ghoul/tokyo-ghoul-cover-1.jpeg', N'Hàng loạt những vụ giết người kỳ lạ đang xảy ra ở Tokyo, và nhờ chất lỏng bằng chứng tại hiện trường, cảnh sát kết luận thủ phạm chính là "ghoul" - quỷ ăn thịt người. Kaneki, một sinh viên đại học thích đọc sách bị một con ghoul tấn công, và từ đó, số phận của chàng trai bắt đầu thay đổi...', '2011-9-1', GETDATE(), 87, 4.3, 890, 'Updating', 1, 'testTranslator', NULL)
+INSERT INTO Mangas(mangaName, coverImageURL, [description], publishDate, updateDate, likeNumber, rating, [view], [status], author, uploader, [group])
+VALUES (N'Fumetsu No Anata', 'img/manga/Fumetsu-No-Anata/cover.jpg', N'Nó bị bỏ rơi lạc lõng một mình trên bề mặt. Lang thang khắp chốn, "nó" tìm đến cậu bé sống cô độc giữa cơn bão tuyết.', '2016-11-9', GETDATE(), 100, 4.5, 727, 'Updating', 2, 'testTranslator', NULL)
 
 
 GO 
@@ -141,6 +139,7 @@ GO
 INSERT INTO Chapters(chapterNumber, chapterName, updateDate, mangaID) VALUES (1, N'Chapter 1', GETDATE(), 1)
 INSERT INTO Chapters(chapterNumber, chapterName, updateDate, mangaID) VALUES (2, N'Chapter 2', GETDATE(), 1)
 INSERT INTO Chapters(chapterNumber, chapterName, updateDate, mangaID) VALUES (3, N'Chapter 3', GETDATE(), 1)
+INSERT INTO Chapters(chapterNumber, chapterName, updateDate, mangaID) VALUES (1, N'Chapter 1', GETDATE(), 2)
 
 GO 
 CREATE TABLE Images(
@@ -251,6 +250,84 @@ INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (23, 'img/manga/Toky
 INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (24, 'img/manga/Tokyo-Ghoul/chap3/tokyo-ghoul-chap3-24.jpg', 3)
 INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (25, 'img/manga/Tokyo-Ghoul/chap3/tokyo-ghoul-chap3-25.jpg', 3)
 
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (1, 'img/manga/Fumetsu-No-Anata/chap1/1.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (2, 'img/manga/Fumetsu-No-Anata/chap1/2.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (3, 'img/manga/Fumetsu-No-Anata/chap1/3.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (4, 'img/manga/Fumetsu-No-Anata/chap1/4.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (5, 'img/manga/Fumetsu-No-Anata/chap1/5.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (6, 'img/manga/Fumetsu-No-Anata/chap1/6.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (7, 'img/manga/Fumetsu-No-Anata/chap1/7.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (8, 'img/manga/Fumetsu-No-Anata/chap1/8.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (9, 'img/manga/Fumetsu-No-Anata/chap1/9.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (10, 'img/manga/Fumetsu-No-Anata/chap1/10.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (11, 'img/manga/Fumetsu-No-Anata/chap1/11.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (12, 'img/manga/Fumetsu-No-Anata/chap1/12.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (13, 'img/manga/Fumetsu-No-Anata/chap1/13.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (14, 'img/manga/Fumetsu-No-Anata/chap1/14.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (15, 'img/manga/Fumetsu-No-Anata/chap1/15.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (16, 'img/manga/Fumetsu-No-Anata/chap1/16.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (17, 'img/manga/Fumetsu-No-Anata/chap1/17.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (18, 'img/manga/Fumetsu-No-Anata/chap1/18.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (19, 'img/manga/Fumetsu-No-Anata/chap1/19.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (20, 'img/manga/Fumetsu-No-Anata/chap1/20.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (21, 'img/manga/Fumetsu-No-Anata/chap1/21.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (22, 'img/manga/Fumetsu-No-Anata/chap1/22.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (23, 'img/manga/Fumetsu-No-Anata/chap1/23.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (24, 'img/manga/Fumetsu-No-Anata/chap1/24.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (25, 'img/manga/Fumetsu-No-Anata/chap1/25.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (26, 'img/manga/Fumetsu-No-Anata/chap1/26.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (27, 'img/manga/Fumetsu-No-Anata/chap1/27.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (28, 'img/manga/Fumetsu-No-Anata/chap1/28.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (29, 'img/manga/Fumetsu-No-Anata/chap1/29.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (30, 'img/manga/Fumetsu-No-Anata/chap1/30.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (31, 'img/manga/Fumetsu-No-Anata/chap1/31.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (32, 'img/manga/Fumetsu-No-Anata/chap1/32.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (33, 'img/manga/Fumetsu-No-Anata/chap1/33.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (34, 'img/manga/Fumetsu-No-Anata/chap1/34.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (35, 'img/manga/Fumetsu-No-Anata/chap1/35.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (36, 'img/manga/Fumetsu-No-Anata/chap1/36.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (37, 'img/manga/Fumetsu-No-Anata/chap1/37.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (38, 'img/manga/Fumetsu-No-Anata/chap1/38.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (39, 'img/manga/Fumetsu-No-Anata/chap1/39.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (40, 'img/manga/Fumetsu-No-Anata/chap1/40.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (41, 'img/manga/Fumetsu-No-Anata/chap1/41.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (42, 'img/manga/Fumetsu-No-Anata/chap1/42.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (43, 'img/manga/Fumetsu-No-Anata/chap1/43.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (44, 'img/manga/Fumetsu-No-Anata/chap1/44.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (45, 'img/manga/Fumetsu-No-Anata/chap1/45.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (46, 'img/manga/Fumetsu-No-Anata/chap1/46.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (47, 'img/manga/Fumetsu-No-Anata/chap1/47.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (48, 'img/manga/Fumetsu-No-Anata/chap1/48.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (49, 'img/manga/Fumetsu-No-Anata/chap1/49.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (50, 'img/manga/Fumetsu-No-Anata/chap1/50.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (51, 'img/manga/Fumetsu-No-Anata/chap1/51.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (52, 'img/manga/Fumetsu-No-Anata/chap1/52.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (53, 'img/manga/Fumetsu-No-Anata/chap1/53.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (54, 'img/manga/Fumetsu-No-Anata/chap1/54.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (55, 'img/manga/Fumetsu-No-Anata/chap1/55.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (56, 'img/manga/Fumetsu-No-Anata/chap1/56.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (57, 'img/manga/Fumetsu-No-Anata/chap1/57.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (58, 'img/manga/Fumetsu-No-Anata/chap1/58.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (59, 'img/manga/Fumetsu-No-Anata/chap1/59.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (60, 'img/manga/Fumetsu-No-Anata/chap1/60.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (61, 'img/manga/Fumetsu-No-Anata/chap1/61.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (62, 'img/manga/Fumetsu-No-Anata/chap1/62.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (63, 'img/manga/Fumetsu-No-Anata/chap1/63.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (64, 'img/manga/Fumetsu-No-Anata/chap1/64.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (65, 'img/manga/Fumetsu-No-Anata/chap1/65.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (66, 'img/manga/Fumetsu-No-Anata/chap1/66.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (67, 'img/manga/Fumetsu-No-Anata/chap1/67.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (68, 'img/manga/Fumetsu-No-Anata/chap1/68.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (69, 'img/manga/Fumetsu-No-Anata/chap1/69.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (70, 'img/manga/Fumetsu-No-Anata/chap1/70.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (71, 'img/manga/Fumetsu-No-Anata/chap1/71.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (72, 'img/manga/Fumetsu-No-Anata/chap1/72.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (73, 'img/manga/Fumetsu-No-Anata/chap1/73.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (74, 'img/manga/Fumetsu-No-Anata/chap1/74.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (75, 'img/manga/Fumetsu-No-Anata/chap1/75.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (76, 'img/manga/Fumetsu-No-Anata/chap1/76.jpg', 4)
+INSERT INTO Images(imageNumber, imageURL, chapterID) VALUES (77, 'img/manga/Fumetsu-No-Anata/chap1/77.jpg', 4)
+
 GO 
 CREATE TABLE Categories(
 	cateID INT IDENTITY(1,1) NOT NULL,
@@ -288,6 +365,7 @@ INSERT INTO Categories(cateName) VALUES (N'Shonen')
 INSERT INTO Categories(cateName) VALUES (N'Shojo')
 INSERT INTO Categories(cateName) VALUES (N'Seinen')
 INSERT INTO Categories(cateName) VALUES (N'Josei')
+INSERT INTO Categories(cateName) VALUES (N'Supernatural')
 
 GO
 CREATE TABLE Mangas_Categories(
@@ -309,6 +387,12 @@ INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 5)
 INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 21)
 INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 22)
 INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (1, 27)
+
+INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (2, 1)
+INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (2, 5)
+INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (2, 6)
+INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (2, 29)
+INSERT INTO Mangas_Categories(mangaID, cateID) VALUES (2, 21)
 
 
 GO
