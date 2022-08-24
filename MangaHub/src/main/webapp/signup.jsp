@@ -26,7 +26,6 @@
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
         <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
         <link rel="stylesheet" href="css/plyr.css" type="text/css">
-        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
         <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -68,39 +67,39 @@
                             <form action="./signup" id="signupForm">
                                 <div class="input__item">
                                     <input type="text" placeholder="* Địa chỉ email" name="email" id = "email" value = ${email}>
-                                    <span class="icon_mail"></span>
+                                    <span class="icon icon_mail"></span>
                                 </div>
                                 <p id="checkEmail" style="display:none; color: red; font-weight: bold;">Email không được bỏ trống.</p>
                                 <div class="input__item">
                                     <input type="text" placeholder="* Tên đăng nhập" name="userName" id = "userName" value = ${userName}>
-                                    <span class="icon_profile"></span>
+                                    <span class="icon icon_profile"></span>
                                 </div>  
                                 <p id="checkUserName" style="display:none; color: red; font-weight: bold;">Tên đăng nhập không được bỏ trống.</p>
                                 <div class="input__item">
                                     <input type="password" placeholder="* Mật khẩu" name = "password" id="password" value = ${password}>
-                                    <span class="icon_lock"></span>
+                                    <span class="icon icon_lock"></span>
                                 </div>
                                 <p id="checkPass" style="display:none; color: red; font-weight: bold;">Mật khẩu không được bỏ trống.</p>
                                 <div class="input__item">
                                     <input type="password" placeholder="* Nhập lại mật khẩu" id = "re_password" value = ${re_password}>
-                                    <span class="icon_lock"></span>
+                                    <span class="icon icon_lock"></span>
                                 </div>
                                 <p id="checkRePass" style="display:none; color: red; font-weight: bold;">Mật khẩu không khớp.</p>
                                 <div class="input__item">
                                     <input type="text" placeholder="Nick name" name="nickName" value = ${nickName}>
-                                    <span class="icon_profile"></span>
-                                </div>
-                                <div class="input__item" style = "color: white; font-weight: bold;">
-                                    <p style = "color: white; font-weight: bold;">Giới tính</p>
-                                    <input style=" height: 13px; width: 10%;" type="radio" name = "gender" id ="gender1" value = "Nam" checked="checked">
-                                    <label for ="gender1" >Nam  </label>
-                                    <input style=" height: 13px; width: 10%;" type="radio" name = "gender" id ="gender2" value = "Nữ">
-                                    <label for ="gender1" >Nữ  </label>
-                                    <input style=" height: 13px; width: 10%;" type="radio" name = "gender" id ="gender3" value = "Khác">
-                                    <label for ="gender1" >Khác  </label>
-                                    <span class="icon_profile"></span>
+                                    <span class="icon icon_puzzle_alt"></span>
                                 </div>
 
+                                <div class="input__item">
+                                    <select name="gender" style="font-size: 12px">
+                                        <option value="" disabled selected hidden>Giới tính</option>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                        <option value="Bí mật">Bí mật</option>
+                                    </select>
+                                    <span class="icon icon_heart"></span>
+                                </div>
+                                    <br><br><br>
 
                                 <button onclick ="check()" type="button" class="site-btn">Đăng kí</button>
                             </form>
