@@ -6,6 +6,8 @@ import com.mangahub.Category.CategoryDAO;
 import com.mangahub.Category.CategoryDTO;
 import com.mangahub.Chapter.ChapterDAO;
 import com.mangahub.Chapter.ChapterDTO;
+import com.mangahub.Image.ImageDAO;
+import com.mangahub.Image.ImageDTO;
 import com.mangahub.Manga.MangaDAO;
 import com.mangahub.Manga.MangaDTO;
 import java.io.IOException;
@@ -42,6 +44,7 @@ public class MangaController extends HttpServlet {
             AuthorDAO authorDAO = new AuthorDAO();
             ChapterDAO chapterDAO = new ChapterDAO();
             CategoryDAO cateDAO = new CategoryDAO();
+            ImageDAO imageDAO = new ImageDAO();
 
             String action = request.getParameter("action");
             String url = "";
@@ -59,6 +62,20 @@ public class MangaController extends HttpServlet {
                     request.setAttribute("author", author);
                     request.setAttribute("chapterList", chapterList);
                     request.setAttribute("mangaCategories", mangaCategories);
+                    break;
+                case "read":
+                    url = "manga-reading.jsp";
+                    mangaID = Integer.parseInt(request.getParameter("mangaID"));
+                    int chapterID = Integer.parseInt(request.getParameter("chapterID"));  
+                    
+                    manga = mangaDAO.loadManga(mangaID);
+                    chapterList = chapterDAO.loadChapters(mangaID);
+                    ArrayList<ImageDTO> imageList = imageDAO.loadChapterImages(chapterID);
+                    
+                    request.setAttribute("chapterID", chapterID);
+                    request.setAttribute("manga", manga);
+                    request.setAttribute("chapterList", chapterList);
+                    request.setAttribute("imageList", imageList);
                     break;
             }
             RequestDispatcher rd = request.getRequestDispatcher(url);

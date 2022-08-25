@@ -3,7 +3,7 @@ package com.mangahub.Image;
 
 import java.io.Serializable;
 
-public class ImageDTO implements Serializable{
+public class ImageDTO implements Serializable, Comparable<ImageDTO>{
     private int imageID;
     private int imageNumber;
     private String imageURL;
@@ -49,6 +49,17 @@ public class ImageDTO implements Serializable{
 
     public void setChapterID(int chapterID) {
         this.chapterID = chapterID;
+    }
+
+    @Override
+    public int compareTo(ImageDTO image) {
+        if (imageNumber == image.getImageNumber()) {
+            return 0;
+        } else if (imageNumber > image.getImageNumber()) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
     
     

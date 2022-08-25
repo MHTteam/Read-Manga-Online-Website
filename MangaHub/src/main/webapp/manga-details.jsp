@@ -121,7 +121,7 @@
                                                     <li>
                                                         <span>Genre:</span> 
                                                         <c:forEach var="cate" items="${requestScope.mangaCategories}" varStatus="loop">
-                                                            <span>${cate.cateName}</span>
+                                                            <span><a href="#">${cate.cateName}</a></span>
                                                         </c:forEach>
                                                     </li>
                                                 </ul>
@@ -154,33 +154,36 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Manga chapters list section -->
-                    <c:if test="${not empty requestScope.chapterList}">
-                        <div class="section-title">
-                            <h5>Chapters List</h5>
-                        </div>
-                        <div>
-                            <table>
+                </c:if>
+                <!-- Manga chapters list section -->
+                <c:if test="${not empty requestScope.chapterList}">
+                    <div class="section-title">
+                        <h5>Chapters List</h5>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <th>Chapter Name</th>
+                                <th>Update Date</th>
+                            </tr>
+                            <c:forEach var="chapter" items="${requestScope.chapterList}" varStatus="loop">
                                 <tr>
-                                    <th>Chapter Name</th>
-                                    <th>Update Date</th>
+                                    <td>
+                                        <a href="manga?action=read&mangaID=${requestScope.manga.mangaID}&chapterID=${chapter.chapterID}">
+                                            ${chapter.chapterName}
+                                        </a>
+                                    </td>
+                                    <td>${chapter.updateDate}</td>
                                 </tr>
-                                <c:forEach var="chapter" items="${requestScope.chapterList}" varStatus="loop">
-                                    <tr>
-                                        <td><a href="#">${chapter.chapterName}</a></td>
-                                        <td>${chapter.updateDate}</td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                        </div>
-                    </c:if>
-                    <!-- Temporary line break, please edit using CSS -->
-                    <br>   
-                    <div class="row">
-                        <!-- Manga comment section -->
-                        <div class="col-lg-8 col-md-8">
-                        </c:if>
-
+                            </c:forEach>
+                        </table>
+                    </div>
+                </c:if>
+                <!-- Temporary line break, please edit using CSS -->
+                <br>   
+                <div class="row">
+                    <!-- Manga comment section -->
+                    <div class="col-lg-8 col-md-8">
                         <div class="anime__details__form">
                             <div class="section-title">
                                 <h5>Your Comment</h5>
