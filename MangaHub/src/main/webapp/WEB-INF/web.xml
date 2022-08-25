@@ -24,6 +24,15 @@
         <servlet-name>SignupController</servlet-name>
         <servlet-class>com.mangahub.controller.SignupController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BlogController</servlet-name>
+        <servlet-class>com.mangahub.controller.BlogController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CategoriesController</servlet-name>
+        <servlet-class>com.mangahub.controller.CategoriesController</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/user</url-pattern>
@@ -42,12 +51,21 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern></url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignupController</servlet-name>
         <url-pattern>/signup</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogController</servlet-name>
+        <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoriesController</servlet-name>
+        <url-pattern>/categories</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

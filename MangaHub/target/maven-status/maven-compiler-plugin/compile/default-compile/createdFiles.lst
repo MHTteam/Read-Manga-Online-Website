@@ -13,7 +13,9 @@ com\mangahub\Chapter\ChapterDAO.class
 com\mangahub\controller\ImageController.class
 com\mangahub\controller\LoginController.class
 com\mangahub\controller\UserController.class
+com\mangahub\controller\BlogController.class
 com\mangahub\controller\HomeController.class
+com\mangahub\controller\CategoriesController.class
 com\mangahub\Author\AuthorDTO.class
 com\mangahub\User\UserDAO.class
 utils\DBUtil.class

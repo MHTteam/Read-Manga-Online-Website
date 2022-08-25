@@ -83,7 +83,7 @@
                     <div class="col-lg-6">
                         <div class="login__register">
                             <h3>Chưa có tài khoản?</h3>
-                            <a href="signup.jsp" class="primary-btn">Đăng kí tài khoản</a>
+                            <a href="./signup" class="primary-btn">Đăng kí tài khoản</a>
                         </div>
                     </div>
                 </div>
@@ -93,10 +93,10 @@
                             <div class="login__social__links">
                                 <span>or</span>
                                 <ul>
-                                    <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With
+                                    <li><a href="https://www.facebook.com/profile.php?=75816879" class="facebook"><i class="fa fa-facebook"></i> Sign in With
                                             Facebook</a></li>
-                                    <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
-                                    <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a>
+                                    <li><a href="https://google.com" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
+                                    <li><a href="https://twitter.com/" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a>
                                     </li>
                                 </ul>
                             </div>

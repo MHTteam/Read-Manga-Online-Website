@@ -8,6 +8,7 @@ package com.mangahub.controller;
 import com.mangahub.User.UserDAO;
 import com.mangahub.User.UserDTO;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,20 +33,24 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
-
-        UserDAO userDAO = new UserDAO();
-        UserDTO user = userDAO.login(userName, password);
-        if (user == null) {
-            request.setAttribute("errorMessage", "Sai tên đăng nhập hoặc mật khẩu.");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+        if (userName == null && password == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
         } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);                       
-            response.sendRedirect("home");
+            UserDAO userDAO = new UserDAO();
+            UserDTO user = userDAO.login(userName, password);
+            if (user == null) {
+                request.setAttribute("errorMessage", "Sai tên đăng nhập hoặc mật khẩu.");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                response.sendRedirect("home");
+            }
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

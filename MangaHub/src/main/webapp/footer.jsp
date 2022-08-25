@@ -6,15 +6,15 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="footer__logo">
-                    <a href="./home"><img src="img/logo.png" alt=""></a>
+                    <a href="./"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="footer__nav">
                     <ul>
-                        <li class="active"><a href="./home">Homepage</a></li>
-                        <li><a href="./categories.jsp">Categories</a></li>
-                        <li><a href="./blog.html">Our Blog</a></li>
+                        <li class="active"><a href="./">Homepage</a></li>
+                        <li><a href="./categories">Categories</a></li>
+                        <li><a href="./blog">Our Blog</a></li>
                         <li><a href="#">Contacts</a></li>
                     </ul>
                 </div>
