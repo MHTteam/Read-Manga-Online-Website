@@ -13,6 +13,7 @@ import com.mangahub.Manga.MangaDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,12 +53,12 @@ public class MangaController extends HttpServlet {
                 case "detail":
                     url = "manga-details.jsp";
                     int mangaID = Integer.parseInt(request.getParameter("mangaID"));
-                    
+
                     MangaDTO manga = mangaDAO.loadManga(mangaID);
                     AuthorDTO author = authorDAO.loadAuthor(manga.getAuthor());
                     ArrayList<ChapterDTO> chapterList = chapterDAO.loadChapters(mangaID);
                     ArrayList<CategoryDTO> mangaCategories = cateDAO.loadMangaCategories(mangaID);
-                    
+
                     request.setAttribute("manga", manga);
                     request.setAttribute("author", author);
                     request.setAttribute("chapterList", chapterList);
@@ -66,14 +67,39 @@ public class MangaController extends HttpServlet {
                 case "read":
                     url = "manga-reading.jsp";
                     mangaID = Integer.parseInt(request.getParameter("mangaID"));
-                    int chapterID = Integer.parseInt(request.getParameter("chapterID"));  
-                    
-                    manga = mangaDAO.loadManga(mangaID);
+                    int chapterID = Integer.parseInt(request.getParameter("chapterID"));
+
                     chapterList = chapterDAO.loadChapters(mangaID);
+                    ChapterDTO chapter = chapterDAO.loadSingleChapter(chapterID);
                     ArrayList<ImageDTO> imageList = imageDAO.loadChapterImages(chapterID);
-                    
-                    request.setAttribute("chapterID", chapterID);
-                    request.setAttribute("manga", manga);
+                    // declare previous and next chapters object
+                    ChapterDTO previousChapter = null,
+                     nextChapter = null;
+                    // declare and assign indexes of first, last and current chapters
+                    int firstChapterIndex = chapterList.get(0).getChapterNumber(),
+                     lastChapterIndex = chapterList.get(chapterList.size() - 1).getChapterNumber(),
+                     chapterIndex = -1;
+                    // get current chapter index
+                    for (int i = 0; i < chapterList.size(); i++) {
+                        if(chapter.getChapterID() == chapterList.get(i).getChapterID()){
+                            chapterIndex = i;
+                        }
+                    }
+                    // assign and set next and previous chapters attributes to request 
+                    if (chapterList.size() > 1) {
+                        log("Manga has more than 1 chapters");
+                        if (chapter.getChapterNumber() > firstChapterIndex) {
+                            previousChapter = chapterList.get(chapterIndex - 1);
+                            request.setAttribute("previousChapter", previousChapter);
+                            log("Previous Chapter Name: " + previousChapter.getChapterName());
+                        }
+                        if (chapter.getChapterNumber() < lastChapterIndex) {
+                            nextChapter = chapterList.get(chapterIndex + 1);
+                            request.setAttribute("nextChapter", nextChapter);
+                            log("Next Chapter Name: " + nextChapter.getChapterName());
+                        }
+                    }
+                    request.setAttribute("chapter", chapter);
                     request.setAttribute("chapterList", chapterList);
                     request.setAttribute("imageList", imageList);
                     break;
