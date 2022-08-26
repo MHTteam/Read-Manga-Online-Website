@@ -36,8 +36,31 @@ public class ChapterDAO {
                 
                 chapterList.add(chapter);
             }
-            Collections.sort(chapterList, Collections.reverseOrder());
+            Collections.sort(chapterList);
             return chapterList;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    
+    public ChapterDTO loadSingleChapter(int chapterID){
+        String sql = "SELECT chapterID, chapterNumber, chapterName, updateDate, mangaID FROM Chapters WHERE chapterID = ?";
+        try {
+            Connection cn = DBUtil.getConnection();
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setInt(1, chapterID);
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+                ChapterDTO chapter = new ChapterDTO();
+                chapter.setChapterID(chapterID);
+                chapter.setChapterNumber(rs.getInt("chapterNumber"));
+                chapter.setChapterName(rs.getString("chapterName"));
+                chapter.setUpdateDate(rs.getDate("updateDate"));
+                chapter.setMangaID(rs.getInt("mangaID"));
+                
+                return chapter;
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

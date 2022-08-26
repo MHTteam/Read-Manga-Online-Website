@@ -4,6 +4,7 @@
     Author     : tri
 --%>
 
+<%@page import="java.util.Collections"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.mangahub.Category.CategoryDTO"%>
 <%@page import="com.mangahub.Chapter.ChapterDTO"%>
@@ -54,6 +55,7 @@
             AuthorDTO author;
             ArrayList<ChapterDTO> chapterList;
             ArrayList<CategoryDTO> mangaCategories;
+            ChapterDTO firstChapter, lastChapter;
         %>
 
         <!-- Catch request attributes -->
@@ -61,9 +63,11 @@
             manga = (MangaDTO) request.getAttribute("manga");
             author = (AuthorDTO) request.getAttribute("author");
             chapterList = (ArrayList<ChapterDTO>) request.getAttribute("chapterList");
+            firstChapter = chapterList.get(0);
+            lastChapter = chapterList.get(chapterList.size() - 1);
+            Collections.sort(chapterList, Collections.reverseOrder());
             mangaCategories = (ArrayList<CategoryDTO>) request.getAttribute("mangaCategories");
         %>
-
         <!-- Breadcrumb Begin -->
         <div class="breadcrumb-option">
             <div class="container">
@@ -122,7 +126,7 @@
                                                         <span>Genre:</span> 
                                                         <c:forEach var="cate" items="${requestScope.mangaCategories}" varStatus="loop">
                                                             <span><a href="#">${cate.cateName}</a></span>
-                                                        </c:forEach>
+                                                            </c:forEach>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -147,8 +151,8 @@
                                     </div>
                                     <div class="anime__details__btn">
                                         <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Favorite</a>
-                                        <a href="#" class="follow-btn">Read First</a>
-                                        <a href="#" class="follow-btn">Read Last</a>
+                                        <a href="manga?action=read&mangaID=${manga.mangaID}&chapterID=<%=firstChapter.getChapterID()%>" class="follow-btn">Read First</a>
+                                        <a href="manga?action=read&mangaID=${manga.mangaID}&chapterID=<%=lastChapter.getChapterID()%>" class="follow-btn">Read Last</a>
                                     </div>
                                 </div>
                             </div>
@@ -166,10 +170,10 @@
                                 <th>Chapter Name</th>
                                 <th>Update Date</th>
                             </tr>
-                            <c:forEach var="chapter" items="${requestScope.chapterList}" varStatus="loop">
+                            <c:forEach var="chapter" items="${chapterList}" varStatus="loop">
                                 <tr>
                                     <td>
-                                        <a href="manga?action=read&mangaID=${requestScope.manga.mangaID}&chapterID=${chapter.chapterID}">
+                                        <a href="manga?action=read&mangaID=${manga.mangaID}&chapterID=${chapter.chapterID}">
                                             ${chapter.chapterName}
                                         </a>
                                     </td>

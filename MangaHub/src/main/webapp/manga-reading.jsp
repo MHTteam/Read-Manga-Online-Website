@@ -3,14 +3,14 @@
     Created on : Aug 19, 2022, 3:46:12 PM
     Author     : tri
 --%>
+<%@page import="java.util.Collections"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.mangahub.Image.ImageDTO"%>
 <%@page import="com.mangahub.Chapter.ChapterDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.mangahub.Manga.MangaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="vi">
 
     <head>
         <meta charset="UTF-8">
@@ -24,7 +24,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
               rel="stylesheet">
-
         <!-- Css Styles -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
@@ -48,14 +47,15 @@
 
         <!-- Declare attributes from servlet -->
         <%!
-            MangaDTO manga;
+            ChapterDTO chapter;
             ArrayList<ChapterDTO> chapterList;
             ArrayList<ImageDTO> imageList;
         %>
         <!-- Catch request attributes -->
         <%
-            manga = (MangaDTO) request.getAttribute("manga");
+            chapter = (ChapterDTO) request.getAttribute("chapter");
             chapterList = (ArrayList<ChapterDTO>) request.getAttribute("chapterList");
+            Collections.sort(chapterList, Collections.reverseOrder());
             imageList = (ArrayList<ImageDTO>) request.getAttribute("imageList");
         %>
         <!-- Breadcrumb Begin -->
@@ -80,38 +80,37 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <!--                    <div class="anime__video__player">
-                                                <video id="player" playsinline controls data-poster="./videos/anime-watch.jpg">
-                                                    <source src="videos/1.mp4" type="video/mp4" />
-                                                     Captions are optional 
-                                                    <track kind="captions" label="English captions" src="#" srclang="en" default />
-                                                </video>
-                                            </div>
-                                            <div class="anime__details__episodes">
-                                                <div class="section-title">
-                                                    <h5>List Name</h5>
-                                                </div>
-                                                <a href="#">Ep 01</a>
-                                                <a href="#">Ep 02</a>
-                                                <a href="#">Ep 03</a>
-                                                <a href="#">Ep 04</a>
-                                                <a href="#">Ep 05</a>
-                                                <a href="#">Ep 06</a>
-                                                <a href="#">Ep 07</a>
-                                                <a href="#">Ep 08</a>
-                                                <a href="#">Ep 09</a>
-                                                <a href="#">Ep 10</a>
-                                                <a href="#">Ep 11</a>
-                                                <a href="#">Ep 12</a>
-                                                <a href="#">Ep 13</a>
-                                                <a href="#">Ep 14</a>
-                                                <a href="#">Ep 15</a>
-                                                <a href="#">Ep 16</a>
-                                                <a href="#">Ep 17</a>
-                                                <a href="#">Ep 18</a>
-                                                <a href="#">Ep 19</a>
-                                            </div>-->
                         <!-- Edit CSS here -->
+                        <div class="chapter-navigator">
+                            <br>
+                            <p>Previous Chapter: ${requestScope.previousChapter.chapterName} --- Next Chapter: ${requestScope.nextChapter.chapterName}</p>
+                            <br>
+                            <c:if test="${not empty requestScope.previousChapter}">
+                                <div class="anime__details__btn">
+                                    <div class="col-lg-4">
+                                        <a href="manga?action=read&mangaID=${requestScope.chapter.mangaID}&chapterID=${requestScope.previousChapter.chapterID}" class="follow-btn">Previous Chapter</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                            <c:if test="${not empty requestScope.nextChapter}">
+                                <div class="anime__details__btn">
+                                    <div class="col-lg-4">
+                                        <a href="manga?action=read&mangaID=${requestScope.chapter.mangaID}&chapterID=${requestScope.nextChapter.chapterID}" class="follow-btn">Next Chapter</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                            <div class="col-lg-4">
+                                <select class="chapter-select" onchange="window.location = this.options[this.selectedIndex].value;">
+                                    <c:forEach var="chap" items="${requestScope.chapterList}" varStatus="loop">
+                                        <option value="manga?action=read&mangaID=${requestScope.chapter.mangaID}&chapterID=${chap.chapterID}" <c:if test="${chap.chapterNumber == requestScope.chapter.chapterID}">selected</c:if>>
+                                            ${chap.chapterName}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
                         <div class="chapter-images">
                             <c:if test="${not empty requestScope.imageList}">
                                 <!-- Please Edit image display -->
@@ -122,23 +121,28 @@
                         </div>
                         <br>
                         <div class="chapter-navigator">
-                            <div class="anime__details__btn">
-                                <div class="col-lg-4">
-                                    <a href="#" class="follow-btn">Previous Chapter</a>
+                            <c:if test="${not empty requestScope.previousChapter}">
+                                <div class="anime__details__btn">
+                                    <div class="col-lg-4">
+                                        <a href="manga?action=read&mangaID=${requestScope.chapter.mangaID}&chapterID=${requestScope.previousChapter.chapterID}" class="follow-btn">Previous Chapter</a>
+                                    </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <a href="#" class="follow-btn">Next Chapter</a>
+                            </c:if>
+                            <c:if test="${not empty requestScope.nextChapter}">
+                                <div class="anime__details__btn">
+                                    <div class="col-lg-4">
+                                        <a href="manga?action=read&mangaID=${requestScope.chapter.mangaID}&chapterID=${requestScope.nextChapter.chapterID}" class="follow-btn">Next Chapter</a>
+                                    </div>
                                 </div>
-                                <br>
-                                <div class="col-lg-4">
-                                    <select class="chapter-select" onchange="window.location = this.options[this.selectedIndex].value;">
-                                        <c:forEach var="chapter" items="${requestScope.chapterList}" varStatus="loop">
-                                            <option value="manga?action=read&mangaID=${requestScope.manga.mangaID}&chapterID=${chapter.chapterID}" <c:if test="${chapter.chapterNumber == requestScope.chapterID}">selected</c:if>>
-                                                ${chapter.chapterName}
-                                            </option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
+                            </c:if>
+                            <div class="col-lg-4">
+                                <select class="chapter-select" onchange="window.location = this.options[this.selectedIndex].value;">
+                                    <c:forEach var="chap" items="${requestScope.chapterList}" varStatus="loop">
+                                        <option value="manga?action=read&mangaID=${requestScope.chapter.mangaID}&chapterID=${chap.chapterID}" <c:if test="${chap.chapterNumber == requestScope.chapter.chapterID}">selected</c:if>>
+                                            ${chap.chapterName}
+                                        </option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <!-- Edit CSS end here -->
@@ -147,6 +151,15 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-8">
+                        <div class="anime__details__form">
+                            <div class="section-title">
+                                <h5>Your Comment</h5>
+                            </div>
+                            <form action="#">
+                                <textarea placeholder="Your Comment"></textarea>
+                                <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                            </form>
+                        </div>
                         <div class="anime__details__review">
                             <div class="section-title">
                                 <h5>Reviews</h5>
@@ -208,15 +221,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="anime__details__form">
-                            <div class="section-title">
-                                <h5>Your Comment</h5>
-                            </div>
-                            <form action="#">
-                                <textarea placeholder="Your Comment"></textarea>
-                                <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
-                            </form>
-                        </div>
+
                     </div>
                 </div>
             </div>
