@@ -21,6 +21,7 @@ public class UserDTO implements Serializable{
     private String gender;
     private Boolean status;
     private Date signupDate;
+    //roleName include "Admin", "User" and "Translator"
     private String roleName;
 
     public UserDTO() {

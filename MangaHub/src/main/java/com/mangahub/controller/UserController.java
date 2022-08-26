@@ -5,12 +5,14 @@
  */
 package com.mangahub.controller;
 
+import com.mangahub.User.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,15 +34,19 @@ public class UserController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UserController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String action = request.getParameter("action");
+            String keyword = request.getParameter("keyword");
+
+            // check security
+            HttpSession usersession = request.getSession(false);
+            UserDTO currentUser = null;
+            if (usersession != null) {
+                currentUser = (UserDTO) usersession.getAttribute("usersession");
+            }
+            if (currentUser == null) {
+                response.sendRedirect(request.getContextPath() + "/login");
+                return;
+            }
         }
     }
 

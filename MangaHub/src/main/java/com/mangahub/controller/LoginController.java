@@ -48,7 +48,7 @@ public class LoginController extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                response.sendRedirect("home");
+                response.sendRedirect("./");
             }
         }
     }
