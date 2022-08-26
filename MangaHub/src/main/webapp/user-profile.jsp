@@ -26,7 +26,6 @@
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
         <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
         <link rel="stylesheet" href="css/plyr.css" type="text/css">
-        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
         <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -59,74 +58,109 @@
         <!-- Normal Breadcrumb End -->
 
         <!-- Profile option Begin -->
+
         <section class="sidebar">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="sidebar-options">
-              <ul>
-                <li class="sidebar-option sidebar-option--active">
-                  <a href="./user?option=1">Thông tin cá nhân</a>
-                </li>
-                <li class="sidebar-option">
-                  <a href="./user?option=2">Bookmark</a>
-                </li>
-                <li class="sidebar-option">
-                  <a href="./user?option=3">Danh sách truyện</a>
-                </li>
-                <li class="sidebar-option">
-                  <a href="./user?option=4">Lịch sử đọc</a>
-                </li>
-                <li class="sidebar-option">
-                  <a href="./user?option=5">Bình luận</a>
-                </li>
-              </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="sidebar-options">
+                            <ul>
+                                <li class="sidebar-option sidebar-option--active">
+                                    <a href="#">Thông tin cá nhân</a>
+                                </li>
+                                <li class="sidebar-option">
+                                    <a href="#">Bookmark</a>
+                                </li>
+                                <li class="sidebar-option">
+                                    <a href="#">Danh sách truyện</a>
+                                </li>
+                                <li class="sidebar-option">
+                                    <a href="#">Lịch sử đọc</a>
+                                </li>
+                                <li class="sidebar-option">
+                                    <a href="#">Bình luận</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="sidebar-option--content">
+                            <div class="user-avatar">
+                                <h3>Ảnh đại diện</h3>
+                                <div class="user-avatar--image">
+                                    <img
+                                        src="img/avatar/user-default-avatar.png"
+                                        alt="Ảnh đại diện mặc định"
+                                        title="Avatar"
+                                        />
+                                </div>
+                                <div>
+                                    <p>PNG file</p>
+                                    <form action="#">
+                                        <input type="file" name="file" accept="image/png" /> <br />
+                                        <button class="user-profile-button" type="submit">Tải lên</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="user-informations">
+                                <h3>Thông tin người dùng</h3>
+                                <div class="user-information">
+                                    <form action="#" method="post">
+                                        <label for="nickName">Nick Name</label><br />
+                                        <input
+                                            type="text"
+                                            name="nickName"
+                                            placeholder="Nick Name"
+                                            />
+
+                                        <p>Tên đăng nhập</p>
+                                        <span class="user-information--fixed">Tên đăng nhập</span>
+
+                                        <p>Email</p>
+                                        <span class="user-information--fixed">Email</span>
+
+                                        <label for="gender">Giới tính</label>
+                                        <select
+                                            name="gender"
+                                            class="user-information--selection"
+                                            style="display: block; float: none; color: black"
+                                            >
+                                            <option value="Nam" selected>Nam</option>
+                                            <option value="Nam">Nữ</option>
+                                            <option value="Nam">Bí mật</option>
+                                        </select>
+
+                                        <p>Ngày đăng kí</p>
+                                        <span class="user-information--fixed">Ngày đăng kí</span
+                                        ><br />
+
+                                        <p>Nhấn nút lưu để cập nhật thông tin của bạn</p>
+                                        <button class= "user-profile-button" type="submit">Lưu</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="user-password">
+                                <h3>Đổi mật khẩu</h3> 
+                                <form class="user-password--form" action = "#" method="post">
+                                    <lable for="oldPassword">Nhập mật khẩu cũ</lable><br />
+                                    <input type="password" name = "oldPassword"> <br />
+                                    <p style="color: red; font-weight: bold; display: none">Mật khẩu không chính xác</p>
+                                    <label for="newPassword">Nhập mật khẩu mới</label> <br/>
+                                    <input type="password" name = "newPassword"> <br />
+                                    <label for="rePassword">Xác nhận mật khẩu mới</label> <br/>
+                                    <input type="password" name = "rePassword"> <br />
+                                    <p style="color: red; font-weight: bold; display: none">Mật khẩu không khớp</p>
+
+                                    <input class= "user-profile-button" type = "submit" value="Đổi mật khẩu">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-9">
-            <div class="sidebar-option--content">
-              <p>
-                Guests and logged-in users Features:<br />
-                Guests:<br />
-
-                View mangas by criterias (Recent updated, top rating,
-                recommended,...)<br />
-                Search mangas by preferences (Name, author, category,...)<br />
-                Sort mangas criterias (Name, publish date, views, rating,...)<br />
-                View mangas of a category (Fantasy, slice of life,...)<br />
-                View comments on mangas<br />
-
-                Users:<br />
-
-                Edit personal account profile<br />
-                Give likes, comments and ratings on mangas<br />
-                Add mangas to their favorite manga list<br />
-                Request to be a manga uploader<br />
-                Create and manage user groups<br />
-                Join user groups<br />
-
-                Uploaders:<br />
-
-                Upload mangas to the website<br />
-                Manage mangas they uploaded (Edit, update,...)<br />
-
-                Admins:<br />
-
-                Manage users (Ban/Unban, assign roles,...)<br />
-                Manage mangas (Process requests, delete, update, edit,...)<br />
-                Manage groups (Process requests, delete, update, edit,...)<br />
-
-                Advanced Features:<br />
-                Find forgotten password/password reset<br />
-                Login with outside account (Google, Facebook)<br />
-
-                Targeted customers:
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
         <!-- Profile option End -->
 
         <!-- Footer Section Begin -->
@@ -148,7 +182,6 @@
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/player.js"></script>
-        <script src="js/jquery.nice-select.min.js"></script>
         <script src="js/mixitup.min.js"></script>
         <script src="js/jquery.slicknav.js"></script>
         <script src="js/owl.carousel.min.js"></script>
