@@ -30,7 +30,7 @@ CREATE TABLE Users(
 	avatarURL VARCHAR(300) NULL,
 	nickName NVARCHAR(50) UNIQUE NOT NULL,
 --	User's gender values: Male, Female, Others
-	gender VARCHAR(10) NOT NULL,
+	gender NVARCHAR(10) NOT NULL,
 --	User's account status values: 0 == Active (Not banned); 1 == inActive (Banned)
 	[status] BIT NOT NULL,
 	signupDate DATE NOT NULL,

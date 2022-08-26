@@ -32,7 +32,10 @@
         <servlet-name>CategoriesController</servlet-name>
         <servlet-class>com.mangahub.controller.CategoriesController</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>UserProfileController</servlet-name>
+        <servlet-class>com.mangahub.controller.UserProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/user</url-pattern>
@@ -65,7 +68,10 @@
         <servlet-name>CategoriesController</servlet-name>
         <url-pattern>/categories</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>UserProfileController</servlet-name>
+        <url-pattern>/userprofile</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

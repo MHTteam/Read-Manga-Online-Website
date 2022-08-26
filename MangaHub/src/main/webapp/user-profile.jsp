@@ -4,6 +4,8 @@
     Author     : tri
 --%>
 
+<%@page import="com.mangahub.User.UserDTO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -33,6 +35,7 @@
     </head>
 
     <body>
+
         <!-- Page Preloder -->
         <div id="preloder">
             <div class="loader"></div>
@@ -41,6 +44,9 @@
         <!-- Header Section Begin -->
         <jsp:include page="header.jsp" />
         <!-- Header End -->
+
+        <%--Khai báo biến--%>
+        <%UserDTO user = (UserDTO) session.getAttribute("user");%>
 
         <!-- Normal Breadcrumb Begin -->
         <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
@@ -106,19 +112,21 @@
                             <div class="user-informations">
                                 <h3>Thông tin người dùng</h3>
                                 <div class="user-information">
-                                    <form action="#" method="post">
+                                    <form action="./userprofile" method="post">
                                         <label for="nickName">Nick Name</label><br />
                                         <input
                                             type="text"
                                             name="nickName"
                                             placeholder="Nick Name"
+                                            value ="<%=user.getNickName()%>"
                                             />
 
+                                        <%--Phần nào không được thay đổi thì để trong class user-information--fixed--%>
                                         <p>Tên đăng nhập</p>
-                                        <span class="user-information--fixed">Tên đăng nhập</span>
+                                        <span class="user-information--fixed"><%=user.getUserName()%></span>
 
                                         <p>Email</p>
-                                        <span class="user-information--fixed">Email</span>
+                                        <span class="user-information--fixed"><%=user.getEmail()%></span>
 
                                         <label for="gender">Giới tính</label>
                                         <select
@@ -126,16 +134,18 @@
                                             class="user-information--selection"
                                             style="display: block; float: none; color: black"
                                             >
-                                            <option value="Nam" selected>Nam</option>
-                                            <option value="Nam">Nữ</option>
-                                            <option value="Nam">Bí mật</option>
+                                            <%--Toán tử 3 ngôi--%>
+                                            <option value="Nam" <%=user.getGender().equalsIgnoreCase("Nam") ? "selected" : ""%>>Nam</option>
+                                            <option value="Nữ" <%=user.getGender().equalsIgnoreCase("nữ") ? "selected" : ""%>>Nữ</option>
+                                            <option value="Bí mật" <%=user.getGender().equalsIgnoreCase("bí mật") ? "selected" : ""%>>Bí mật</option>
                                         </select>
 
                                         <p>Ngày đăng kí</p>
-                                        <span class="user-information--fixed">Ngày đăng kí</span
+                                        <span class="user-information--fixed"><%=user.getSignupDate()%></span
                                         ><br />
 
                                         <p>Nhấn nút lưu để cập nhật thông tin của bạn</p>
+                                        <input type="hidden" name="action" value="changeInfor">
                                         <button class= "user-profile-button" type="submit">Lưu</button>
                                     </form>
                                 </div>
@@ -143,17 +153,17 @@
 
                             <div class="user-password">
                                 <h3>Đổi mật khẩu</h3> 
-                                <form class="user-password--form" action = "#" method="post">
+                                <form id="changePassword" class="user-password--form" action = "./userprofile" method="post">
                                     <lable for="oldPassword">Nhập mật khẩu cũ</lable><br />
-                                    <input type="password" name = "oldPassword"> <br />
-                                    <p style="color: red; font-weight: bold; display: none">Mật khẩu không chính xác</p>
+                                    <input type="password" name = "oldPassword" required> <br />
+                                    <p style="color: red; font-weight: bold;">${incorrectPassMess}</p>
                                     <label for="newPassword">Nhập mật khẩu mới</label> <br/>
-                                    <input type="password" name = "newPassword"> <br />
+                                    <input type="password" name = "newPassword" id="newPassword" required> <br />
                                     <label for="rePassword">Xác nhận mật khẩu mới</label> <br/>
-                                    <input type="password" name = "rePassword"> <br />
-                                    <p style="color: red; font-weight: bold; display: none">Mật khẩu không khớp</p>
-
-                                    <input class= "user-profile-button" type = "submit" value="Đổi mật khẩu">
+                                    <input type="password" name = "rePassword" id="rePassword" required> <br />
+                                    <p id="checkPassFalse" style="color: red; font-weight: bold; display: none">Mật khẩu không khớp</p>
+                                    <input type="hidden" name="action" value="changePass">
+                                    <button onclick="checkPass('changePassword')" class= "user-profile-button">Đổi mật khẩu</button>
                                 </form>
                             </div>
                         </div>
@@ -179,6 +189,21 @@
         <!-- Search model end -->
 
         <!-- Js Plugins -->
+        <script>
+            function checkPass(id) {
+                var form = document.getElementById(id);
+                var pass = document.getElementById("newPassword").value;
+                var rePass = document.getElementById("rePassword").value;
+
+                if (pass !== rePass) {
+                    document.getElementById("checkPassFalse").style.display = "block";
+                } else {
+                    form.submit();
+                }
+
+            }
+        </script>
+
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/player.js"></script>
