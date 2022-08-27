@@ -5,12 +5,15 @@
  */
 package com.mangahub.controller;
 
+import com.mangahub.User.UserDAO;
+import com.mangahub.User.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,9 +34,25 @@ public class UserProfileController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
-        if(action.equalsIgnoreCase("changePass")) {
-            
-        }
+
+        if (action.equalsIgnoreCase("changePass")) {
+            String userName = request.getParameter("userName");
+            String oldPass = request.getParameter("oldPassword");
+            String newPassword = request.getParameter("newPassword");
+            UserDAO dao = new UserDAO();
+            request.setAttribute("oldPass", oldPass);
+            request.setAttribute("newPass", newPassword);
+            if(dao.changePass(userName, newPassword)){
+                request.setAttribute("changePassMess", "Đổi mật khẩu thành công"); 
+                //Đặt lại session bằng hàm login() -> hiệu suất giảm
+                UserDTO user = dao.login(userName, newPassword);
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+            } else {
+                request.setAttribute("changePassMess", "Có lỗi xảy ra khi đổi mật khẩu");request.getRequestDispatcher("user-profile.jsp").forward(request, response);
+            }
+            request.getRequestDispatcher("user-profile.jsp").forward(request, response);
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

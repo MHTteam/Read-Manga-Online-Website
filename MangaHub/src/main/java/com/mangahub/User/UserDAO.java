@@ -5,13 +5,11 @@
  */
 package com.mangahub.User;
 
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import jdk.nashorn.internal.runtime.UserAccessorProperty;
+import java.util.ArrayList;
 import utils.DBUtil;
 
 /**
@@ -62,7 +60,7 @@ public class UserDAO {
         if (checkUserName(userName)) {
             return null;
         }
-        
+
         if (checkNickName(nickName)) {
             return null;
         }
@@ -81,7 +79,7 @@ public class UserDAO {
             ps.setDate(6, signupDate);
 
             int rs = ps.executeUpdate();
-          
+
             if (rs != 0) {
                 return login(userName, password);
             }
@@ -142,7 +140,7 @@ public class UserDAO {
 
         return false;
     }
-    
+
     private boolean checkNickName(String nickName) {
         String sql = "SELECT * FROM Users "
                 + " WHERE nickName = ? ";
@@ -167,6 +165,30 @@ public class UserDAO {
         return false;
     }
 
+    public boolean changePass(String userName, String pass) {
+
+        String sql = "UPDATE Users "
+                + " SET password = ? "
+                + " WHERE userName = ?; ";
+
+        try {
+            Connection con = DBUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, pass);
+            ps.setString(2, userName);
+            int rs = ps.executeUpdate();
+            if (rs > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error when execute query.");
+            e.printStackTrace();
+            e.getMessage();
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
 //        UserDAO dao = new UserDAO();
 //        UserDTO test = dao.signUp("daominhtri1000@gmail.com", "triPro", "123456", "triPro", "nam");
@@ -175,10 +197,44 @@ public class UserDAO {
         String email = "daominhtri@gmail.com";
         boolean matchEmail = email.matches("^[a-z][a-z0-9_\\.]{5,32}@gmail.com$");
         System.out.println(matchEmail);
-        
+
         String txt[] = email.split("@");
         String nickName = txt[0];
         System.out.println(nickName);
+
+    }
+
+    //load data from database and save in a list
+    public ArrayList<UserDTO> list() {
+        String sql = "select userName, [password], email, phoneNumber, avatarURL, nickname, gender, [status], signupDate, roleName"
+                + "from Users"
+                + "inner join UserRoles"
+                + "on Users.[role] = UserRoles.roleID;";
+        ArrayList<UserDTO> userList = new ArrayList<>();
+        try {
+            Connection cn = DBUtil.getConnection();
+            PreparedStatement pst = cn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                UserDTO userDTO = new UserDTO();
+
+                userDTO.setUserName(rs.getString("userName"));
+                userDTO.setPassword(rs.getString("password"));
+                userDTO.setEmail(rs.getString("email"));
+                userDTO.setAvatarURL(rs.getString("avartarURL"));
+                userDTO.setNickName(rs.getString("nickname"));
+                userDTO.setGender(rs.getString("gender"));
+                userDTO.setStatus(rs.getBoolean("status"));
+                userDTO.setSignupDate(rs.getDate("signupDate"));
+                userDTO.setRoleName(rs.getString("roleName"));
+
+                userList.add(userDTO);
+            }
+            return userList;
+        } catch (SQLException ex) {
+            System.out.println("Query user error: " + ex.getMessage());
+        }
+        return null;
 
     }
 }

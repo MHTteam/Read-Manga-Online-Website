@@ -153,17 +153,20 @@
 
                             <div class="user-password">
                                 <h3>Đổi mật khẩu</h3> 
+                                <p style="font-weight: bold; color: yellow;">${changePassMess}</p>
                                 <form id="changePassword" class="user-password--form" action = "./userprofile" method="post">
                                     <lable for="oldPassword">Nhập mật khẩu cũ</lable><br />
-                                    <input type="password" name = "oldPassword" required> <br />
-                                    <p style="color: red; font-weight: bold;">${incorrectPassMess}</p>
+                                    <input type="password" id = "oldPassword" name = "oldPassword" required value="${oldPass}"> <br />
+                                    <p id="checkOldPass" style="color: red; font-weight: bold; display: none;">Mật khẩu cũ không khớp</p>
                                     <label for="newPassword">Nhập mật khẩu mới</label> <br/>
-                                    <input type="password" name = "newPassword" id="newPassword" required> <br />
+                                    <input type="password" name = "newPassword" id="newPassword" required value = "${newPass}"> <br />
                                     <label for="rePassword">Xác nhận mật khẩu mới</label> <br/>
-                                    <input type="password" name = "rePassword" id="rePassword" required> <br />
+                                    <input type="password" name = "rePassword" id="rePassword" required value = "${newPass}"> <br />
                                     <p id="checkPassFalse" style="color: red; font-weight: bold; display: none">Mật khẩu không khớp</p>
                                     <input type="hidden" name="action" value="changePass">
-                                    <button onclick="checkPass('changePassword')" class= "user-profile-button">Đổi mật khẩu</button>
+                                    <input type="hidden" name="userName" value="<%=user.getUserName()%>">
+                                    
+                                    <button onclick="checkPass('changePassword')" type="button" class= "user-profile-button">Đổi mật khẩu</button>
                                 </form>
                             </div>
                         </div>
@@ -190,17 +193,32 @@
 
         <!-- Js Plugins -->
         <script>
+            <%--Check password có hợp lệ hay không--%>
             function checkPass(id) {
                 var form = document.getElementById(id);
                 var pass = document.getElementById("newPassword").value;
                 var rePass = document.getElementById("rePassword").value;
+                var oldPass = document.getElementById("oldPassword").value;
+                var userPass = "<%=user.getPassword()%>";
+                var isValid = true;
 
                 if (pass !== rePass) {
                     document.getElementById("checkPassFalse").style.display = "block";
+                    isValid = false;
                 } else {
+                    document.getElementById("checkPassFalse").style.display = "none";
+                } 
+                
+                if (oldPass !== userPass) {
+                    document.getElementById("checkOldPass").style.display = "block";
+                    isValid = false;
+                } else {
+                    document.getElementById("checkOldPass").style.display = "none";
+                }
+                
+                if(isValid === true) {
                     form.submit();
                 }
-
             }
         </script>
 
