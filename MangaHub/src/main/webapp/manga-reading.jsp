@@ -82,9 +82,6 @@
                     <div class="col-lg-12">
                         <!-- Edit CSS here -->
                         <div class="chapter-navigator">
-                            <br>
-                            <p>Previous Chapter: ${requestScope.previousChapter.chapterName} --- Next Chapter: ${requestScope.nextChapter.chapterName}</p>
-                            <br>
                             <c:if test="${not empty requestScope.previousChapter}">
                                 <div class="anime__details__btn">
                                     <div class="col-lg-4">

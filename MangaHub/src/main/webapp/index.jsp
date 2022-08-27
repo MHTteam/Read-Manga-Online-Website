@@ -94,7 +94,6 @@
                         <jsp:include page="top-rating.jsp" />
                         <jsp:include page="most-viewed.jsp" />
                         <jsp:include page="recent-manga.jsp" />
-                        <jsp:include page="live-product.jsp" />
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-8">
                         <jsp:include page="manga-sidebar.jsp" />
