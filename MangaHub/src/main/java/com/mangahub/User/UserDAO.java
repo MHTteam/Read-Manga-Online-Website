@@ -60,7 +60,7 @@ public class UserDAO {
         if (checkUserName(userName)) {
             return null;
         }
-        
+
         if (checkNickName(nickName)) {
             return null;
         }
@@ -79,7 +79,7 @@ public class UserDAO {
             ps.setDate(6, signupDate);
 
             int rs = ps.executeUpdate();
-          
+
             if (rs != 0) {
                 return login(userName, password);
             }
@@ -140,7 +140,7 @@ public class UserDAO {
 
         return false;
     }
-    
+
     private boolean checkNickName(String nickName) {
         String sql = "SELECT * FROM Users "
                 + " WHERE nickName = ? ";
@@ -165,6 +165,30 @@ public class UserDAO {
         return false;
     }
 
+    public boolean changePass(String userName, String pass) {
+
+        String sql = "UPDATE Users "
+                + " SET password = ? "
+                + " WHERE userName = ?; ";
+
+        try {
+            Connection con = DBUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, pass);
+            ps.setString(2, userName);
+            int rs = ps.executeUpdate();
+            if (rs > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error when execute query.");
+            e.printStackTrace();
+            e.getMessage();
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
 //        UserDAO dao = new UserDAO();
 //        UserDTO test = dao.signUp("daominhtri1000@gmail.com", "triPro", "123456", "triPro", "nam");
@@ -173,7 +197,7 @@ public class UserDAO {
         String email = "daominhtri@gmail.com";
         boolean matchEmail = email.matches("^[a-z][a-z0-9_\\.]{5,32}@gmail.com$");
         System.out.println(matchEmail);
-        
+
         String txt[] = email.split("@");
         String nickName = txt[0];
         System.out.println(nickName);
@@ -191,9 +215,9 @@ public class UserDAO {
             Connection cn = DBUtil.getConnection();
             PreparedStatement pst = cn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 UserDTO userDTO = new UserDTO();
-                
+
                 userDTO.setUserName(rs.getString("userName"));
                 userDTO.setPassword(rs.getString("password"));
                 userDTO.setEmail(rs.getString("email"));
@@ -203,7 +227,7 @@ public class UserDAO {
                 userDTO.setStatus(rs.getBoolean("status"));
                 userDTO.setSignupDate(rs.getDate("signupDate"));
                 userDTO.setRoleName(rs.getString("roleName"));
-               
+
                 userList.add(userDTO);
             }
             return userList;
@@ -211,6 +235,6 @@ public class UserDAO {
             System.out.println("Query user error: " + ex.getMessage());
         }
         return null;
-        
+
     }
 }
