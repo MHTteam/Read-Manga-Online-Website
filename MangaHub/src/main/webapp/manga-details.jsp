@@ -118,8 +118,9 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <ul>
-                                                    <li><span>Uploader:</span> ${requestScope.manga.uploader}</li>
+                                                    
                                                     <li><span>Publish Date:</span> ${requestScope.manga.publishDate}</li>
+                                                    <li><span>Added Date:</span> ${requestScope.manga.addedDate}</li>
                                                     <li><span>Update Date:</span> ${requestScope.manga.updateDate}</li>
                                                     <li><span>Status:</span> ${requestScope.manga.status}</li>
                                                     <li>
@@ -134,6 +135,7 @@
                                                 <ul>
                                                     <li><span>Likes:</span> ${requestScope.manga.likeNumber}</li>
                                                     <li><span>Rating:</span> ${requestScope.manga.rating}</li>
+                                                    <li><span>Uploader:</span> ${requestScope.manga.uploader}</li>
                                                     <li>
                                                         <span>Group:</span> 
                                                         <c:if test="${not empty requestScope.manga.group}">
@@ -144,7 +146,6 @@
                                                         </c:if>
                                                     </li>
                                                     <li><span>Views:</span> ${requestScope.manga.view}</li>
-                                                    <li><span>Quality:</span> HD</li>
                                                 </ul>
                                             </div>
                                         </div>

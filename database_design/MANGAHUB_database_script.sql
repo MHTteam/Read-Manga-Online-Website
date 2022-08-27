@@ -96,6 +96,7 @@ CREATE TABLE Mangas(
 	coverImageURL VARCHAR(300) NOT NULL,
 	[description] NVARCHAR(1000) NULL,
 	publishDate DATE NULL,
+	addedDate DATE NOT NULL,
 	updateDate DATE NOT NULL,
 	likeNumber INT NOT NULL,
 	rating FLOAT NULL,
@@ -116,10 +117,10 @@ CREATE TABLE Mangas(
 )
 
 GO
-INSERT INTO Mangas(mangaName, coverImageURL, [description], publishDate, updateDate, likeNumber, rating, [view], [status], author, uploader, [group])
-VALUES (N'Tokyo Ghoul', 'img/manga/Tokyo-Ghoul/tokyo-ghoul-cover-1.jpeg', N'Hàng loạt những vụ giết người kỳ lạ đang xảy ra ở Tokyo, và nhờ chất lỏng bằng chứng tại hiện trường, cảnh sát kết luận thủ phạm chính là "ghoul" - quỷ ăn thịt người. Kaneki, một sinh viên đại học thích đọc sách bị một con ghoul tấn công, và từ đó, số phận của chàng trai bắt đầu thay đổi...', '2011-9-1', GETDATE(), 87, 4.3, 890, 'Updating', 1, 'testTranslator', NULL)
-INSERT INTO Mangas(mangaName, coverImageURL, [description], publishDate, updateDate, likeNumber, rating, [view], [status], author, uploader, [group])
-VALUES (N'Fumetsu No Anata', 'img/manga/Fumetsu-No-Anata/cover.jpg', N'Nó bị bỏ rơi lạc lõng một mình trên bề mặt. Lang thang khắp chốn, "nó" tìm đến cậu bé sống cô độc giữa cơn bão tuyết.', '2016-11-9', GETDATE(), 100, 4.5, 727, 'Updating', 2, 'testTranslator', NULL)
+INSERT INTO Mangas(mangaName, coverImageURL, [description], publishDate, addedDate, updateDate, likeNumber, rating, [view], [status], author, uploader, [group])
+VALUES (N'Tokyo Ghoul', 'img/manga/Tokyo-Ghoul/tokyo-ghoul-cover-1.jpeg', N'Hàng loạt những vụ giết người kỳ lạ đang xảy ra ở Tokyo, và nhờ chất lỏng bằng chứng tại hiện trường, cảnh sát kết luận thủ phạm chính là "ghoul" - quỷ ăn thịt người. Kaneki, một sinh viên đại học thích đọc sách bị một con ghoul tấn công, và từ đó, số phận của chàng trai bắt đầu thay đổi...', '2011-9-1', '2022-7-10', GETDATE(), 87, 4.3, 890, 'Updating', 1, 'testTranslator', NULL)
+INSERT INTO Mangas(mangaName, coverImageURL, [description], publishDate, addedDate, updateDate, likeNumber, rating, [view], [status], author, uploader, [group])
+VALUES (N'Fumetsu No Anata', 'img/manga/Fumetsu-No-Anata/cover.jpg', N'Nó bị bỏ rơi lạc lõng một mình trên bề mặt. Lang thang khắp chốn, "nó" tìm đến cậu bé sống cô độc giữa cơn bão tuyết.', '2016-11-9', '2022-8-27', GETDATE(), 100, 4.5, 727, 'Updating', 2, 'testTranslator', NULL)
 
 
 GO 

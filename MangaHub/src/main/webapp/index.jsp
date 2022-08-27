@@ -91,8 +91,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <jsp:include page="trending.jsp" />
-                        <jsp:include page="popular-manga.jsp" />
+                        <jsp:include page="top-rating.jsp" />
+                        <jsp:include page="most-viewed.jsp" />
                         <jsp:include page="recent-manga.jsp" />
                         <jsp:include page="live-product.jsp" />
                     </div>

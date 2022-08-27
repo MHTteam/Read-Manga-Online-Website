@@ -10,6 +10,7 @@ public class MangaDTO implements Serializable {
     private String coverImageURL;
     private String description;
     private Date publishDate;
+    private Date addedDate;
     private Date updateDate;
     private int likeNumber;
     private double rating;
@@ -22,12 +23,13 @@ public class MangaDTO implements Serializable {
     public MangaDTO() {
     }
 
-    public MangaDTO(int mangaID, String mangaName, String coverImageURL, String description, Date publishDate, Date updateDate, int likeNumber, double rating, int view, String status, int author, String uploader, String group) {
+    public MangaDTO(int mangaID, String mangaName, String coverImageURL, String description, Date publishDate, Date addedDate, Date updateDate, int likeNumber, double rating, int view, String status, int author, String uploader, String group) {
         this.mangaID = mangaID;
         this.mangaName = mangaName;
         this.coverImageURL = coverImageURL;
         this.description = description;
         this.publishDate = publishDate;
+        this.addedDate = addedDate;
         this.updateDate = updateDate;
         this.likeNumber = likeNumber;
         this.rating = rating;
@@ -76,6 +78,14 @@ public class MangaDTO implements Serializable {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public Date getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(Date addedDate) {
+        this.addedDate = addedDate;
     }
 
     public Date getUpdateDate() {
@@ -141,7 +151,5 @@ public class MangaDTO implements Serializable {
     public void setGroup(String group) {
         this.group = group;
     }
-    
-    
 
 }

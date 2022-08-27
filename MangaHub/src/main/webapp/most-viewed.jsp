@@ -1,15 +1,15 @@
 <%-- 
-    Document   : recent-manga
-    Created on : Aug 22, 2022, 3:00:34 PM
+    Document   : popular-show
+    Created on : Aug 22, 2022, 2:53:19 PM
     Author     : tri
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div class="recent__product">
+<div class="popular__product">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8">
             <div class="section-title">
-                <h4>Recently Added</h4>
+                <h4>Most Viewed</h4>
             </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
@@ -20,8 +20,8 @@
     </div>
     <div class="row">
         <!-- Manga detail begin -->
-        <c:if test="${not empty requestScope.recentlyAdded}">
-            <c:forEach var="manga" items="${requestScope.recentlyAdded}" varStatus="loop">
+        <c:if test="${not empty requestScope.mostView}">
+            <c:forEach var="manga" items="${requestScope.mostView}" varStatus="loop">
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="${manga.coverImageURL}">
@@ -41,6 +41,5 @@
             </c:forEach>
         </c:if>
         <!-- Manga detail end -->
-
     </div>
 </div>
