@@ -5,13 +5,11 @@
  */
 package com.mangahub.User;
 
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import jdk.nashorn.internal.runtime.UserAccessorProperty;
+import java.util.ArrayList;
 import utils.DBUtil;
 
 /**
@@ -180,5 +178,39 @@ public class UserDAO {
         String nickName = txt[0];
         System.out.println(nickName);
 
+    }
+
+    //load data from database and save in a list
+    public ArrayList<UserDTO> list() {
+        String sql = "select userName, [password], email, phoneNumber, avatarURL, nickname, gender, [status], signupDate, roleName"
+                + "from Users"
+                + "inner join UserRoles"
+                + "on Users.[role] = UserRoles.roleID;";
+        ArrayList<UserDTO> userList = new ArrayList<>();
+        try {
+            Connection cn = DBUtil.getConnection();
+            PreparedStatement pst = cn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()) {
+                UserDTO userDTO = new UserDTO();
+                
+                userDTO.setUserName(rs.getString("userName"));
+                userDTO.setPassword(rs.getString("password"));
+                userDTO.setEmail(rs.getString("email"));
+                userDTO.setAvatarURL(rs.getString("avartarURL"));
+                userDTO.setNickName(rs.getString("nickname"));
+                userDTO.setGender(rs.getString("gender"));
+                userDTO.setStatus(rs.getBoolean("status"));
+                userDTO.setSignupDate(rs.getDate("signupDate"));
+                userDTO.setRoleName(rs.getString("roleName"));
+               
+                userList.add(userDTO);
+            }
+            return userList;
+        } catch (SQLException ex) {
+            System.out.println("Query user error: " + ex.getMessage());
+        }
+        return null;
+        
     }
 }

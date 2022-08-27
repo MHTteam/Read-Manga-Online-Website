@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +20,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author tri
+ * @author Huu Minh
  */
-public class UserController extends HttpServlet {
+@WebServlet(name = "AdminController", urlPatterns = {"/admin"})
+public class AdminController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,31 +39,24 @@ public class UserController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String action = request.getParameter("action");
-            String keyword = request.getParameter("keyword");
 
             // check security
             HttpSession usersession = request.getSession(false);
             UserDTO currentUser = null;
             if (usersession != null) {
-                currentUser = (UserDTO) usersession.getAttribute("usersession");
+                currentUser = (UserDTO) usersession.getAttribute("user");
             }
             if (currentUser == null) {
                 response.sendRedirect(request.getContextPath() + "/login");
                 return;
             }
-            
-            // Show user list
-            if (action.equals("list")) {
-                ArrayList<UserDTO> list = new ArrayList<>();
-                UserDAO dao = new UserDAO();
-                list = dao.list();
-                request.setAttribute("list", list);
-                RequestDispatcher rd = request.getRequestDispatcher("account_container.jsp");
+            if (currentUser.getRoleName().equalsIgnoreCase("admin")) {
+                RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
                 rd.forward(request, response);
+            } else {
+                response.sendRedirect(request.getContextPath() + "/home");
             }
-            
-            
+
         }
     }
 
