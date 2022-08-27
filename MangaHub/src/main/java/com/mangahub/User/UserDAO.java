@@ -189,19 +189,57 @@ public class UserDAO {
         return false;
     }
 
-    public static void main(String[] args) {
-//        UserDAO dao = new UserDAO();
-//        UserDTO test = dao.signUp("daominhtri1000@gmail.com", "triPro", "123456", "triPro", "nam");
-//        System.out.println(test.toString());
+    public boolean changeProfile(String userName, String nickName, String gender) {
 
-        String email = "daominhtri@gmail.com";
-        boolean matchEmail = email.matches("^[a-z][a-z0-9_\\.]{5,32}@gmail.com$");
-        System.out.println(matchEmail);
+        if (checkNickName(nickName)) {
+            return false;
+        }
 
-        String txt[] = email.split("@");
-        String nickName = txt[0];
-        System.out.println(nickName);
+        String sql = "UPDATE Users "
+                + " SET nickName = ?, gender = ? "
+                + " WHERE userName = ? ";
 
+        try {
+            Connection con = DBUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nickName);
+            ps.setString(2, gender);
+            ps.setString(3, userName);
+            int rs = ps.executeUpdate();
+            if (rs > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error when execute query.");
+            e.printStackTrace();
+            e.getMessage();
+        }
+
+        return false;
+    }
+
+    public boolean changeProfile(String userName, String gender) {
+
+        String sql = "UPDATE Users "
+                + " SET gender = ? "
+                + " WHERE userName = ? ";
+
+        try {
+            Connection con = DBUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, gender);
+            ps.setString(2, userName);
+            int rs = ps.executeUpdate();
+            if (rs > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error when execute query.");
+            e.printStackTrace();
+            e.getMessage();
+        }
+
+        return false;
     }
 
     //load data from database and save in a list
@@ -235,6 +273,27 @@ public class UserDAO {
             System.out.println("Query user error: " + ex.getMessage());
         }
         return null;
+
+    }
+
+    public static void main(String[] args) {
+        UserDAO dao = new UserDAO();
+//        UserDTO test = dao.signUp("daominhtri1000@gmail.com", "triPro", "123456", "triPro", "nam");
+//        System.out.println(test.toString());
+
+//        String email = "daominhtri@gmail.com";
+//        boolean matchEmail = email.matches("^[a-z][a-z0-9_\\.]{5,32}@gmail.com$");
+//        System.out.println(matchEmail);
+//
+//        String txt[] = email.split("@");
+//        String nickName = txt[0];
+//        System.out.println(nickName);
+
+        String userName = "girluser";
+        String nickName = "admin pro";
+        String gender = "Nữ";
+        
+        System.out.println(dao.changeProfile(userName, gender));
 
     }
 }

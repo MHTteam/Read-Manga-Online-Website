@@ -112,7 +112,9 @@
                             <div class="user-informations">
                                 <h3>Thông tin người dùng</h3>
                                 <div class="user-information">
+                                    <p style="font-weight: bold; color: yellow;">${changeInforMess}</p>
                                     <form action="./userprofile" method="post">
+                                        
                                         <label for="nickName">Nick Name</label><br />
                                         <input
                                             type="text"
@@ -156,16 +158,15 @@
                                 <p style="font-weight: bold; color: yellow;">${changePassMess}</p>
                                 <form id="changePassword" class="user-password--form" action = "./userprofile" method="post">
                                     <lable for="oldPassword">Nhập mật khẩu cũ</lable><br />
-                                    <input type="password" id = "oldPassword" name = "oldPassword" required value="${oldPass}"> <br />
+                                    <input type="password" id = "oldPassword" name = "oldPassword" required <%--value="${oldPass}"--%>> <br />
                                     <p id="checkOldPass" style="color: red; font-weight: bold; display: none;">Mật khẩu cũ không khớp</p>
                                     <label for="newPassword">Nhập mật khẩu mới</label> <br/>
-                                    <input type="password" name = "newPassword" id="newPassword" required value = "${newPass}"> <br />
+                                    <input type="password" name = "newPassword" id="newPassword" required <%--value = "${newPass}"--%>> <br />
                                     <label for="rePassword">Xác nhận mật khẩu mới</label> <br/>
-                                    <input type="password" name = "rePassword" id="rePassword" required value = "${newPass}"> <br />
+                                    <input type="password" name = "rePassword" id="rePassword" required <%--value = "${newPass}"--%>> <br />
                                     <p id="checkPassFalse" style="color: red; font-weight: bold; display: none">Mật khẩu không khớp</p>
                                     <input type="hidden" name="action" value="changePass">
                                     <input type="hidden" name="userName" value="<%=user.getUserName()%>">
-                                    
                                     <button onclick="checkPass('changePassword')" type="button" class= "user-profile-button">Đổi mật khẩu</button>
                                 </form>
                             </div>
