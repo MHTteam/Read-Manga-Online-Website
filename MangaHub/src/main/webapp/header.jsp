@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="header__logo">
-                    <a href="./">
+                    <a href="./home">
                         <img src="img/logo.png" alt="">
                     </a>
                 </div>
@@ -41,17 +41,21 @@
                             if (usersession == null) {
 
                         %>
-                        <div class="header__right">
-                            <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                            <a href="./login"><span class="icon_profile"></span></a> 
-                        </div>
-                        <%                        
-                            } else { %>
-                            <div class="header__right" style="padding: 0">
+                        <div class="header__right" style="padding: 0; margin: 0; color: #ffffff; text-align: right">
                                 <nav class="header__menu mobile-menu">
                                     <ul>
                                         <li><a href="#" class="search-switch"><span class="icon_search"></span></a></li>
-                                        <li><a href="./"><span class="icon_profile"></a>
+                                        <li><a href="./login"><span class="icon_profile"></span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        <%                        
+                            } else { %>
+                            <div class="header__right" style="padding: 0; margin: 0; color: #ffffff; text-align: right">
+                                <nav class="header__menu mobile-menu">
+                                    <ul>
+                                        <li><a href="#" class="search-switch"><span class="icon_search"></span></a></li>
+                                        <li><a href="./home"><span class="icon_profile"></a>
                                             <ul class="dropdown">
                                                 <li><a href="./">Trang cá nhân</a></li>
                                                 <li><a href="./">Truyện yêu thích</a></li>
