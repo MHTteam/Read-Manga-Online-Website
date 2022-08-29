@@ -34,6 +34,13 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        HttpSession session = request.getSession();
+        UserDTO user  = (UserDTO) session.getAttribute("user");
+//        if(user != null) {
+//            response.sendRedirect("userprofile");
+//            return;
+//        }
+
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         if (userName == null && password == null) {
@@ -41,12 +48,11 @@ public class LoginController extends HttpServlet {
             rd.forward(request, response);
         } else {
             UserDAO userDAO = new UserDAO();
-            UserDTO user = userDAO.login(userName, password);
+            user = userDAO.login(userName, password);
             if (user == null) {
                 request.setAttribute("errorMessage", "Sai tên đăng nhập hoặc mật khẩu.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
-                HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 if (user.getRoleName().equalsIgnoreCase("admin")) {
                     response.sendRedirect(request.getContextPath() + "/admin");

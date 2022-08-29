@@ -35,6 +35,13 @@ public class UserProfileController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        
+//        if(user == null) {
+//            response.sendRedirect("login");
+//            return;
+//        }
 
         if (action != null) {
             if (action.equalsIgnoreCase("changePass")) {
@@ -46,8 +53,7 @@ public class UserProfileController extends HttpServlet {
 //                request.setAttribute("newPass", newPassword);
                 if (dao.changePass(userName, newPassword)) {
                     request.setAttribute("changePassMess", "Đổi mật khẩu thành công");
-                    HttpSession session = request.getSession();
-                    UserDTO user = (UserDTO) session.getAttribute("user");
+
                     user.setPassword(newPassword);
                     session.setAttribute("user", user);
                 } else {
@@ -57,8 +63,6 @@ public class UserProfileController extends HttpServlet {
             } else if (action.equalsIgnoreCase("changeInfor")) {
                 String nickName = request.getParameter("nickName");
                 String gender = request.getParameter("gender");
-                HttpSession session = request.getSession();
-                UserDTO user = (UserDTO) session.getAttribute("user");
                 String userName = user.getUserName();
                 UserDAO dao = new UserDAO();
 
@@ -74,7 +78,7 @@ public class UserProfileController extends HttpServlet {
                     }
                 } //truong hop doi nick name
                 else {
-                    
+
                     if (dao.changeProfile(userName, nickName, gender)) {
                         request.setAttribute("changeInforMess", "Lưu thông tin thành công.");
                         user.setNickName(nickName);
@@ -84,9 +88,12 @@ public class UserProfileController extends HttpServlet {
                         request.setAttribute("changeInforMess", "Nick name đã tồn tại.");
                     }
                 }
+            } else if (action.equalsIgnoreCase("logout")) {
+                session.setAttribute("user", null);
+                response.sendRedirect("login");
+                return;
             }
         }
-
         request.getRequestDispatcher("user-profile.jsp").forward(request, response);
     }
 

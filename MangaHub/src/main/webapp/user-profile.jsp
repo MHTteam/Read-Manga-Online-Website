@@ -62,6 +62,8 @@
             </div>
         </section>
         <!-- Normal Breadcrumb End -->
+        
+        <c:if test = "${user != null}">
 
         <!-- Profile option Begin -->
 
@@ -85,6 +87,9 @@
                                 </li>
                                 <li class="sidebar-option">
                                     <a href="#">Bình luận</a>
+                                </li>
+                                <li class="sidebar-option">
+                                    <a href="./userprofile?action=logout">Đăng xuất</a>
                                 </li>
                             </ul>
                         </div>
@@ -176,6 +181,8 @@
             </div>
         </section>
         <!-- Profile option End -->
+        
+        </c:if>
 
         <!-- Footer Section Begin -->
         <jsp:include page="footer.jsp" />
@@ -193,6 +200,7 @@
         <!-- Search model end -->
 
         <!-- Js Plugins -->
+        <c:if test = "${user != null}">
         <script>
             <%--Check password có hợp lệ hay không--%>
             function checkPass(id) {
@@ -222,6 +230,7 @@
                 }
             }
         </script>
+        </c:if>
 
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
