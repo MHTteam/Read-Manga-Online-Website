@@ -100,17 +100,19 @@
                                 <h3>Ảnh đại diện</h3>
                                 <div class="user-avatar--image">
                                     <img
-                                        src="img/avatar/user-default-avatar.png"
-                                        alt="Ảnh đại diện mặc định"
+                                        src="img/avatar/<%=user.getUserName()%>/avatar.png"
+                                        alt="Ảnh đại diện"
                                         title="Avatar"
                                         />
                                 </div>
                                 <div>
                                     <p>PNG file</p>
-                                    <form action="#">
-                                        <input type="file" name="file" accept="image/png" /> <br />
+                                    <form action="./userprofile" method="post" enctype="multipart/form-data">
+                                        <input type="file" name="file" accept="image/png"/> <br />
+                                        <input type ="hidden" name="action" value="updateAvatar">
                                         <button class="user-profile-button" type="submit">Tải lên</button>
                                     </form>
+                                    <p>Path: ${path}</p>
                                 </div>
                             </div>
 

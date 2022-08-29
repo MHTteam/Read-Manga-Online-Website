@@ -7,13 +7,20 @@ package com.mangahub.controller;
 
 import com.mangahub.User.UserDAO;
 import com.mangahub.User.UserDTO;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -37,12 +44,11 @@ public class UserProfileController extends HttpServlet {
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
         UserDTO user = (UserDTO) session.getAttribute("user");
-        
+
 //        if(user == null) {
 //            response.sendRedirect("login");
 //            return;
 //        }
-
         if (action != null) {
             if (action.equalsIgnoreCase("changePass")) {
                 String userName = request.getParameter("userName");
@@ -88,6 +94,49 @@ public class UserProfileController extends HttpServlet {
                         request.setAttribute("changeInforMess", "Nick name đã tồn tại.");
                     }
                 }
+            } else if (action.equalsIgnoreCase("updateAvatar")) {
+               
+            //Lấy đường dẫn tương đối
+                String dir;
+
+                dir = request.getServletContext().getRealPath("index.jsp");
+                String path[] = dir.split("target");
+                dir = path[0];
+
+                dir += "src\\main\\webapp";
+                dir += "\\img";
+                File img = new File(dir);
+                if (!img.exists()) {
+                    img.mkdir();
+                }
+                dir += "\\avatar";
+                File avatar = new File(dir);
+                if (!avatar.exists()) {
+                    avatar.mkdir();
+                }
+                dir += "\\" + user.getUserName();
+                File image = new File(dir);
+                if (!image.exists()) {
+                    image.mkdir();
+                }
+                //Lấy đường dẫn tương đối
+
+                Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+
+                String fileName = "avatar";
+                File file = File.createTempFile(fileName, ".png", image);
+
+                try (InputStream input = filePart.getInputStream()) {
+                    Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }
+
+                Path source = Paths.get(dir + "\\" + file.getName());
+
+                Files.move(source, source.resolveSibling("avatar.png"),
+                        StandardCopyOption.REPLACE_EXISTING);
+
+                request.setAttribute("path", dir);
+
             } else if (action.equalsIgnoreCase("logout")) {
                 session.setAttribute("user", null);
                 response.sendRedirect("login");
