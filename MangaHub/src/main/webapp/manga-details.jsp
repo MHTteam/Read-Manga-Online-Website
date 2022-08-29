@@ -119,9 +119,9 @@
                                             <div class="col-lg-6 col-md-6">
                                                 <ul>
                                                     
-                                                    <li><span>Publish Date:</span> ${requestScope.manga.publishDate}</li>
-                                                    <li><span>Added Date:</span> ${requestScope.manga.addedDate}</li>
-                                                    <li><span>Update Date:</span> ${requestScope.manga.updateDate}</li>
+                                                    <li><span>Publish Date:</span> ${requestScope.manga.getFormattedPublishDate()}</li>
+                                                    <li><span>Added Date:</span> ${requestScope.manga.getFormattedAddedDate()}</li>
+                                                    <li><span>Update Date:</span> ${requestScope.manga.getFormattedUpdateDate()}</li>
                                                     <li><span>Status:</span> ${requestScope.manga.status}</li>
                                                     <li>
                                                         <span>Genre:</span> 

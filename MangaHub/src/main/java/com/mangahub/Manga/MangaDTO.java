@@ -2,6 +2,8 @@ package com.mangahub.Manga;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class MangaDTO implements Serializable {
 
@@ -19,6 +21,8 @@ public class MangaDTO implements Serializable {
     private int author;
     private String uploader;
     private String group;
+
+    private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
     public MangaDTO() {
     }
@@ -150,6 +154,18 @@ public class MangaDTO implements Serializable {
 
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    public String getFormattedPublishDate() {
+        return df.format(publishDate);
+    }
+    
+    public String getFormattedAddedDate() {
+        return df.format(addedDate);
+    }
+    
+    public String getFormattedUpdateDate() {
+        return df.format(updateDate);
     }
 
 }

@@ -103,6 +103,20 @@ public class MangaController extends HttpServlet {
                     request.setAttribute("chapterList", chapterList);
                     request.setAttribute("imageList", imageList);
                     break;
+                case "edit":
+                    url = "manga-edit.jsp";
+                    mangaID = Integer.parseInt(request.getParameter("mangaID"));
+
+                    manga = mangaDAO.loadManga(mangaID);
+                    author = authorDAO.loadAuthor(manga.getAuthor());
+                    chapterList = chapterDAO.loadChapters(mangaID);
+                    mangaCategories = cateDAO.loadMangaCategories(mangaID);
+
+                    request.setAttribute("manga", manga);
+                    request.setAttribute("author", author);
+                    request.setAttribute("chapterList", chapterList);
+                    request.setAttribute("mangaCategories", mangaCategories);
+                    break;
             }
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
