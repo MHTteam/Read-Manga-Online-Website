@@ -95,6 +95,11 @@ textarea:focus {
     outline: none;
 }
 
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+}
 a:hover,
 a:focus {
     text-decoration: none;
@@ -1072,6 +1077,10 @@ ol {
     padding: 14px 20px;
     border-radius: 4px;
     margin-right: 11px;
+}
+
+.anime__details__btn .follow-btn:hover{
+    opacity: 0.7;
 }
 
 .anime__details__btn .watch-btn span {
@@ -2492,3 +2501,85 @@ ol {
 
 .no-csspointerevents .nice-select.open .list {
     display: block; }
+
+/*--------------------------------- Chapter list -----------------------------*/
+.chapter-box {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.chapter-box .chapter-head {
+    width: 100%;    
+    background: #1d1e39;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chapter-box .chapter-row {
+    width: 100%;    
+    background: #1d1e39;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chapter-box .chapter-row:hover {
+    opacity: 0.7;
+}
+
+.chapter-box .chapter-item {
+    width: 50%;
+    color: #ffffff;
+    margin: 10px 15px;
+    
+}
+
+
+
+
+/*--------------------------------- Chapter reading -----------------------------*/
+.chapter-images{
+    width: 100%;
+    display: block;
+    align-items: center;
+    justify-content: space-around;
+}
+.chapter-images img {    
+    width: 100%;
+}
+
+.chapter-navigator {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chapter-navigator .anime__details__btn{
+    font-size: 13px;
+    color: #ffffff;
+    background: #e53637;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    border-radius: 4px;
+    margin: 11px;
+}
+
+.chapter-navigator .anime__details__btn a{
+    color: #ffffff;
+}
+
+.chapter-navigator .chapter-select{
+    font-size: 13px;
+    display: inline;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 4px;
+    margin: 11px;
+    max-width: 500px;
+    left: auto;
+    right: auto;
+}

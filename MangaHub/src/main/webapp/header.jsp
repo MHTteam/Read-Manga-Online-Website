@@ -14,7 +14,7 @@
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./">Homepage</a></li>
+                            <li class="active"><a href="./home">Homepage</a></li>
                             <li><a href="./categories">Categories <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
                                     <li><a href="./categories.jsp">Categories</a></li>

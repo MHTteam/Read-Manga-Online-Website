@@ -118,7 +118,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <ul>
-                                                    
+
                                                     <li><span>Publish Date:</span> ${requestScope.manga.getFormattedPublishDate()}</li>
                                                     <li><span>Added Date:</span> ${requestScope.manga.getFormattedAddedDate()}</li>
                                                     <li><span>Update Date:</span> ${requestScope.manga.getFormattedUpdateDate()}</li>
@@ -160,35 +160,36 @@
                         </div>
                     </div>
                 </c:if>
-                <!-- Manga chapters list section -->
-                <c:if test="${not empty requestScope.chapterList}">
-                    <div class="section-title">
-                        <h5>Chapters List</h5>
-                    </div>
-                    <div>
-                        <table>
-                            <tr>
-                                <th>Chapter Name</th>
-                                <th>Update Date</th>
-                            </tr>
-                            <c:forEach var="chapter" items="${chapterList}" varStatus="loop">
-                                <tr>
-                                    <td>
-                                        <a href="manga?action=read&mangaID=${manga.mangaID}&chapterID=${chapter.chapterID}">
-                                            ${chapter.chapterName}
-                                        </a>
-                                    </td>
-                                    <td>${chapter.updateDate}</td>
-                                </tr>
-                            </c:forEach>
-                        </table>
-                    </div>
-                </c:if>
-                <!-- Temporary line break, please edit using CSS -->
+
                 <br>   
                 <div class="row">
-                    <!-- Manga comment section -->
+
                     <div class="col-lg-8 col-md-8">
+                        <!-- Manga chapters list section -->
+                        <c:if test="${not empty requestScope.chapterList}">
+                            <div class="section-title">
+                                <h5>Chapters List</h5>
+                            </div>
+                            <div class="chapter-box">
+                                <h5 class="chapter-head" style="font-weight: bo"> 
+                                    <div class="chapter-item">Chapter Name</div>
+                                    <div class="chapter-item" style="text-align: right">Update Date</div>
+                                </h5>
+
+
+                                <c:forEach var="chapter" items="${chapterList}" varStatus="loop">
+                                    <a class="chapter-row" href="manga?action=read&mangaID=${manga.mangaID}&chapterID=${chapter.chapterID}">
+                                        <div class="chapter-item">${chapter.chapterName}</div>        
+                                        <div class="chapter-item" style="text-align: right">${chapter.updateDate}</div>    
+                                    </a> 
+                                </c:forEach>
+
+
+                            </div>
+                        </c:if>
+                        <!-- Temporary line break, please edit using CSS -->
+                        <br><br>
+                        <!-- Manga comment section -->
                         <div class="anime__details__form">
                             <div class="section-title">
                                 <h5>Your Comment</h5>
