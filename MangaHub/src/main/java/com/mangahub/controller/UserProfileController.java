@@ -26,6 +26,7 @@ import javax.servlet.http.Part;
  *
  * @author tri
  */
+@javax.servlet.annotation.MultipartConfig //fix bug multipart file when using Filter
 public class UserProfileController extends HttpServlet {
 
     /**
@@ -95,8 +96,8 @@ public class UserProfileController extends HttpServlet {
                     }
                 }
             } else if (action.equalsIgnoreCase("updateAvatar")) {
-               
-            //Lấy đường dẫn tương đối
+
+                //Lấy đường dẫn tương đối
                 String dir;
 
                 dir = request.getServletContext().getRealPath("index.jsp");
@@ -121,13 +122,16 @@ public class UserProfileController extends HttpServlet {
                 }
                 //Lấy đường dẫn tương đối
 
-                Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-
                 String fileName = "avatar";
                 File file = File.createTempFile(fileName, ".png", image);
 
-                try (InputStream input = filePart.getInputStream()) {
-                    Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                try {
+                    Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+                    try (InputStream input = filePart.getInputStream()) {
+                        Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
                 Path source = Paths.get(dir + "\\" + file.getName());
@@ -135,7 +139,13 @@ public class UserProfileController extends HttpServlet {
                 Files.move(source, source.resolveSibling("avatar.png"),
                         StandardCopyOption.REPLACE_EXISTING);
 
-                request.setAttribute("path", dir);
+//                request.setAttribute("path", dir);
+                String url = "img/avatar/" + user.getUserName() + "/avatar.png";
+                UserDAO dao = new UserDAO();
+                if (dao.changeAvatar(url, user.getUserName())) {
+                    user.setAvatarURL(url);
+                    session.setAttribute("user", user);
+                }
 
             } else if (action.equalsIgnoreCase("logout")) {
                 session.setAttribute("user", null);

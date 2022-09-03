@@ -56,6 +56,7 @@ public class SignupController extends HttpServlet {
                 request.setAttribute("nickName", nickName);
                 request.getRequestDispatcher("signup.jsp").forward(request, response);
             } else {
+                //khong nhap nick name thi mac dinh nick name la ten gmail
                 if (nickName == null || nickName.trim().equals("")) {
                     String txt[] = email.split("@");
                     nickName = txt[0];
@@ -63,6 +64,7 @@ public class SignupController extends HttpServlet {
 
                 UserDAO registerDAO = new UserDAO();
                 UserDTO user = registerDAO.signUp(email, userName, password, nickName, gender);
+                //neu khong dang ki duoc thi gui loi ve trang dang ki
                 if (user == null) {
                     request.setAttribute("email", email);
                     request.setAttribute("userName", userName);

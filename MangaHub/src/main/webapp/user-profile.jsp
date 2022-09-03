@@ -100,7 +100,7 @@
                                 <h3>Ảnh đại diện</h3>
                                 <div class="user-avatar--image">
                                     <img
-                                        src="img/avatar/<%=user.getUserName()%>/avatar.png"
+                                        src="<%=user.getAvatarURL()%>"
                                         alt="Ảnh đại diện"
                                         title="Avatar"
                                         />
@@ -112,7 +112,7 @@
                                         <input type ="hidden" name="action" value="updateAvatar">
                                         <button class="user-profile-button" type="submit">Tải lên</button>
                                     </form>
-                                    <p>Path: ${path}</p>
+                                    <%--<p>Path: ${path}</p>--%>
                                 </div>
                             </div>
 

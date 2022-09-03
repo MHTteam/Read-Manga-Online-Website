@@ -52,7 +52,7 @@ public class UserDAO {
 
     public UserDTO signUp(String email, String userName, String password, String nickName, String gender) {
         String sql = "INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role]) "
-                + "	VALUES (?, ?, ?, NULL, ?, ?, 0, ?, 2)";
+                + "	VALUES (?, ?, ?, 'img/avatar/user-default-avatar.png', ?, ?, 0, ?, 2)";
 
         if (checkEmail(email)) {
             return null;
@@ -241,6 +241,32 @@ public class UserDAO {
 
         return false;
     }
+    
+    public boolean changeAvatar(String url, String userName) {
+
+        String sql = "UPDATE Users "
+                + " SET avatarURL = ? "
+                + " WHERE userName = ? ";
+
+        try {
+            Connection con = DBUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, url);
+            ps.setString(2, userName);
+            int rs = ps.executeUpdate();
+            if (rs > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error when execute query.");
+            e.printStackTrace();
+            e.getMessage();
+        }
+
+        return false;
+    }
+    
+    
 
     //load data from database and save in a list
     public ArrayList<UserDTO> list() {
