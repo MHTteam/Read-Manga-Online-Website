@@ -122,6 +122,7 @@ public class UserProfileController extends HttpServlet {
                 }
                 //Lấy đường dẫn tương đối
 
+                //tạo file .png và ghi đè img vào
                 String fileName = "avatar";
                 File file = File.createTempFile(fileName, ".png", image);
 
@@ -133,11 +134,14 @@ public class UserProfileController extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                //tạo file .png và ghi đè img vào
 
+                //rename img
                 Path source = Paths.get(file.getParentFile() + "\\" + file.getName());
-
+               
                 Files.move(source, source.resolveSibling("avatar.png"),
                         StandardCopyOption.REPLACE_EXISTING);
+                //rename img
 
 //                request.setAttribute("path", file.getAbsolutePath());
 
