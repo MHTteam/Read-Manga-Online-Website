@@ -108,7 +108,7 @@
                                 <div>
                                     <p>PNG file</p>
                                     <form action="./userprofile" method="post" enctype="multipart/form-data">
-                                        <input type="file" name="file" accept="image/png"/> <br />
+                                        <input type="file" name="file" accept="image/png" value =""/> <br />
                                         <input type ="hidden" name="action" value="updateAvatar">
                                         <button class="user-profile-button" type="submit">Tải lên</button>
                                     </form>

@@ -101,11 +101,11 @@ public class UserProfileController extends HttpServlet {
                 String dir;
 
                 dir = request.getServletContext().getRealPath("index.jsp");
-                String path[] = dir.split("target");
+                String path[] = dir.split("MangaHub");
                 dir = path[0];
 
-                dir += "src\\main\\webapp";
-                dir += "\\img";
+//                dir += "src\\main\\webapp";
+                dir += "\\images";
                 File img = new File(dir);
                 if (!img.exists()) {
                     img.mkdir();
@@ -134,13 +134,14 @@ public class UserProfileController extends HttpServlet {
                     e.printStackTrace();
                 }
 
-                Path source = Paths.get(dir + "\\" + file.getName());
+                Path source = Paths.get(file.getParentFile() + "\\" + file.getName());
 
                 Files.move(source, source.resolveSibling("avatar.png"),
                         StandardCopyOption.REPLACE_EXISTING);
 
-//                request.setAttribute("path", dir);
-                String url = "img/avatar/" + user.getUserName() + "/avatar.png";
+//                request.setAttribute("path", file.getAbsolutePath());
+
+                String url = "images/avatar/" + user.getUserName() + "/avatar.png";
                 UserDAO dao = new UserDAO();
                 if (dao.changeAvatar(url, user.getUserName())) {
                     user.setAvatarURL(url);

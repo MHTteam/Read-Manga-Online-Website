@@ -52,7 +52,7 @@ public class UserDAO {
 
     public UserDTO signUp(String email, String userName, String password, String nickName, String gender) {
         String sql = "INSERT INTO Users(userName, [password], email, avatarURL, nickName, gender, [status], signupDate, [role]) "
-                + "	VALUES (?, ?, ?, 'img/avatar/user-default-avatar.png', ?, ?, 0, ?, 2)";
+                + "	VALUES (?, ?, ?, 'images/avatar/default.png', ?, ?, 0, ?, 2)";
 
         if (checkEmail(email)) {
             return null;
